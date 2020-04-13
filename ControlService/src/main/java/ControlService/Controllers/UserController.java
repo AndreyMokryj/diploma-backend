@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController    // This means that this class is a Controller
 @RequestMapping(path="/users")
@@ -32,6 +33,7 @@ public class UserController {
         UserE user = UserE.fromVO(userVO);
         UserE savedUser;
         if (retrieveUser(user.getUsername()) == null) {
+            user.setId(UUID.randomUUID().toString());
             savedUser = userRepository.save(user);
             return true;
         }
