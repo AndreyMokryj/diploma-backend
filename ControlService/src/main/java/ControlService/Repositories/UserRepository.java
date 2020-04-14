@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<UserE, Long> {
+public interface UserRepository extends CrudRepository<UserE, String> {
     @Query("SELECT u FROM users u where u.username = :un")
     @Transactional
     public Optional<UserE> findByUN(@PathVariable String un);
