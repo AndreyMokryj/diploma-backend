@@ -1,10 +1,9 @@
 package ControlService.Controllers;
 
 import ControlService.Entities.DirectionE;
-import ControlService.Entities.UserE;
 import ControlService.Repositories.DirectionRepository;
 import ControlService.vo.DirectionVO;
-import ControlService.vo.UserVO;
+import ControlService.vo.PreviousVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +33,7 @@ public class DirectionController {
         return direction.get();
     }
 
-    private DirectionE upsertDirection(DirectionVO directionVO) {
+    private DirectionE getDirection(DirectionVO directionVO) {
         DirectionE direction = DirectionE.fromVO(directionVO);
         try {
             Optional<DirectionE> direction1 = directionRepository.findByParams(
@@ -55,7 +54,18 @@ public class DirectionController {
     @CrossOrigin(origins = "*")
     @PostMapping("/get/")
     public DirectionE getDir(@RequestBody DirectionVO directionVO) {
-        DirectionE direction = upsertDirection(directionVO);
+        DirectionE direction = getDirection(directionVO);
         return direction;
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/update/")
+    public void updatePrevDirection(@RequestBody PreviousVO previousVO) {
+        DirectionE direction = getById(previousVO.getId());
+        direction.setAltPlus(direction.getAltPlus() + previousVO.getAltPlus());
+        direction.setAltMinus(direction.getAltMinus() + previousVO.getAltMinus());
+        direction.setAzPlus(direction.getAzPlus() + previousVO.getAzPlus());
+        direction.setAzMinus(direction.getAzMinus() + previousVO.getAzMinus());
+        directionRepository.save(direction);
     }
 }
