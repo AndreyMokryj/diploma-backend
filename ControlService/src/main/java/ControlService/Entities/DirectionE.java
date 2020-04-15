@@ -34,7 +34,7 @@ public class DirectionE {
         DirectionE direction = new DirectionE();
         direction.setId(directionVO.getId());
         direction.setPanelId(directionVO.getPanelId());
-        direction.setPower(directionVO.getPower());
+        direction.setPower((int) (Math.round(directionVO.getPower() / 5.0) * 5));
         direction.setAzimuth(directionVO.getAzimuth());
         direction.setAltitude(directionVO.getAltitude());
         direction.setAzPlus(directionVO.getAzPlus());

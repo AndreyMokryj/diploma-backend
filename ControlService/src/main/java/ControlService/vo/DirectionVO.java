@@ -3,7 +3,7 @@ package ControlService.vo;
 public class DirectionVO {
     private String id;
     private String panelId;
-    private int power;
+    private double power;
     private int azimuth;
     private int altitude;
     private int azPlus;
@@ -28,11 +28,11 @@ public class DirectionVO {
         this.panelId = panelId;
     }
 
-    public int getPower() {
+    public double getPower() {
         return power;
     }
 
-    public void setPower(int power) {
+    public void setPower(double power) {
         this.power = power;
     }
 
