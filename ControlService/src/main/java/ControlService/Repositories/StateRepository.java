@@ -14,5 +14,5 @@ public interface StateRepository extends CrudRepository<StateE, String> {
 
     @Query("SELECT ps FROM panel_states ps where ps.panelId = :panelId and ps.azimuth = :az and ps.altitude = :alt")
     @Transactional
-    public Optional<StateE> findByParams(String panelId, double az, double alt);
+    public Optional<StateE> findByParams(String panelId, int az, int alt);
 }

@@ -33,7 +33,7 @@ public class StateController {
         return direction.get();
     }
 
-    private StateE getDirection(StateVO stateVO) {
+    private StateE getState(StateVO stateVO) {
         StateE direction = StateE.fromVO(stateVO);
         try {
             Optional<StateE> direction1 = stateRepository.findByParams(
@@ -54,7 +54,7 @@ public class StateController {
     @CrossOrigin(origins = "*")
     @PostMapping("/get/")
     public StateE getDir(@RequestBody StateVO stateVO) {
-        StateE direction = getDirection(stateVO);
+        StateE direction = getState(stateVO);
         return direction;
     }
 
