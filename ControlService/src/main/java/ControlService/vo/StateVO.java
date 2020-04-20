@@ -1,15 +1,15 @@
 package ControlService.vo;
 
-public class DirectionVO {
+public class StateVO {
     private String id;
     private String panelId;
-    private double power;
+//    private double power;
     private int azimuth;
     private int altitude;
-    private int azPlus;
-    private int azMinus;
-    private int altPlus;
-    private int altMinus;
+    private double azPlus;
+    private double azMinus;
+    private double altPlus;
+    private double altMinus;
 
     public String getId() {
         return id;
@@ -28,13 +28,13 @@ public class DirectionVO {
         this.panelId = panelId;
     }
 
-    public double getPower() {
-        return power;
-    }
-
-    public void setPower(double power) {
-        this.power = power;
-    }
+//    public double getPower() {
+//        return power;
+//    }
+//
+//    public void setPower(double power) {
+//        this.power = power;
+//    }
 
     public int getAzimuth() {
         return azimuth;
@@ -52,35 +52,36 @@ public class DirectionVO {
         this.altitude = altitude;
     }
 
-    public int getAzPlus() {
+
+    public double getAzPlus() {
         return azPlus;
     }
 
-    public void setAzPlus(int azPlus) {
+    public void setAzPlus(double azPlus) {
         this.azPlus = azPlus;
     }
 
-    public int getAzMinus() {
+    public double getAzMinus() {
         return azMinus;
     }
 
-    public void setAzMinus(int azMinus) {
+    public void setAzMinus(double azMinus) {
         this.azMinus = azMinus;
     }
 
-    public int getAltPlus() {
+    public double getAltPlus() {
         return altPlus;
     }
 
-    public void setAltPlus(int altPlus) {
+    public void setAltPlus(double altPlus) {
         this.altPlus = altPlus;
     }
 
-    public int getAltMinus() {
+    public double getAltMinus() {
         return altMinus;
     }
 
-    public void setAltMinus(int altMinus) {
+    public void setAltMinus(double altMinus) {
         this.altMinus = altMinus;
     }
 }

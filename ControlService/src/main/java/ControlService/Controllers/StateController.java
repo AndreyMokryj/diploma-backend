@@ -1,8 +1,8 @@
 package ControlService.Controllers;
 
-import ControlService.Entities.DirectionE;
-import ControlService.Repositories.DirectionRepository;
-import ControlService.vo.DirectionVO;
+import ControlService.Entities.StateE;
+import ControlService.Repositories.StateRepository;
+import ControlService.vo.StateVO;
 import ControlService.vo.PreviousVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,33 +12,33 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController    // This means that this class is a Controller
-@RequestMapping(path="/directions")
+@RequestMapping(path="/states")
 @Component
-public class DirectionController {
+public class StateController {
     @Autowired
-    private DirectionRepository directionRepository;
+    private StateRepository stateRepository;
 
     @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
-    Iterable<DirectionE> getAll() {
-        return directionRepository.findAll();
+    Iterable<StateE> getAll() {
+        return stateRepository.findAll();
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
-    DirectionE getById(@PathVariable String id) {
-        Optional<DirectionE> direction = directionRepository.findById(id);
+    StateE getById(@PathVariable String id) {
+        Optional<StateE> direction = stateRepository.findById(id);
         return direction.get();
     }
 
-    private DirectionE getDirection(DirectionVO directionVO) {
-        DirectionE direction = DirectionE.fromVO(directionVO);
+    private StateE getDirection(StateVO stateVO) {
+        StateE direction = StateE.fromVO(stateVO);
         try {
-            Optional<DirectionE> direction1 = directionRepository.findByParams(
+            Optional<StateE> direction1 = stateRepository.findByParams(
                     direction.getPanelId(),
-                    direction.getPower(),
+//                    direction.getPower(),
                     direction.getAzimuth(),
                     direction.getAltitude()
                 );
@@ -46,26 +46,26 @@ public class DirectionController {
         }
         catch (Exception ex){
             direction.setId(UUID.randomUUID().toString());
-            DirectionE saved = directionRepository.save(direction);
+            StateE saved = stateRepository.save(direction);
             return saved;
         }
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/get/")
-    public DirectionE getDir(@RequestBody DirectionVO directionVO) {
-        DirectionE direction = getDirection(directionVO);
+    public StateE getDir(@RequestBody StateVO stateVO) {
+        StateE direction = getDirection(stateVO);
         return direction;
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/update/")
     public void updatePrevDirection(@RequestBody PreviousVO previousVO) {
-        DirectionE direction = getById(previousVO.getId());
+        StateE direction = getById(previousVO.getId());
         direction.setAltPlus(direction.getAltPlus() + previousVO.getAltPlus());
         direction.setAltMinus(direction.getAltMinus() + previousVO.getAltMinus());
         direction.setAzPlus(direction.getAzPlus() + previousVO.getAzPlus());
         direction.setAzMinus(direction.getAzMinus() + previousVO.getAzMinus());
-        directionRepository.save(direction);
+        stateRepository.save(direction);
     }
 }
