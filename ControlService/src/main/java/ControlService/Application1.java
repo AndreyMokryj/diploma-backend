@@ -1,5 +1,6 @@
 package ControlService;
 
+import ControlService.Workflow.WorkProcess;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,13 +17,20 @@ public class Application1 {
         SpringApplication.run(Application1.class, args);
         System.out.println("After");
 
+//        WorkProcess workProcess = WorkProcess.getInstance();
+
         TimerTask repeatedTask = new TimerTask() {
             public void run() {
-                System.out.println("Task performed on " + new Date());
+//                System.out.println("Task performed on " + new Date());
+                WorkProcess.getInstance().execute();
             }
         };
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+        //Before start
         long delay  = 1000L;
+
+        //Period
         long period = 1000L;
         executor.scheduleAtFixedRate(repeatedTask, delay, period, TimeUnit.MILLISECONDS);
         Thread.sleep(delay + period * 3);

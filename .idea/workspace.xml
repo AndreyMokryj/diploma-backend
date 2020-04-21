@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03c6e7cf-7908-4ff9-b123-8b29fe98f266" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Workflow/WorkProcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Application1.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Application1.java" afterDir="false" />
     </list>
@@ -9,6 +10,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,7 +94,7 @@
       <workItem from="1586521155355" duration="963000" />
       <workItem from="1586522869589" duration="15101000" />
       <workItem from="1587392904725" duration="58000" />
-      <workItem from="1587392990264" duration="2534000" />
+      <workItem from="1587392990264" duration="4540000" />
     </task>
     <servers />
   </component>
@@ -131,38 +139,38 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="100" y="123" width="1240" height="606" key="DiffContextDialog/0.23.1440.826@0.23.1440.826" timestamp="1586521742938" />
-    <state width="1398" height="252" key="GridCell.Tab.0.bottom" timestamp="1587466655496">
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom" timestamp="1587480083685">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587466655496" />
-    <state width="1398" height="252" key="GridCell.Tab.0.center" timestamp="1587466655495">
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587480083685" />
+    <state width="1398" height="252" key="GridCell.Tab.0.center" timestamp="1587480083684">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1587466655495" />
-    <state width="1398" height="252" key="GridCell.Tab.0.left" timestamp="1587466655495">
+    <state width="1398" height="252" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1587480083684" />
+    <state width="1398" height="252" key="GridCell.Tab.0.left" timestamp="1587480083683">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1587466655495" />
-    <state width="1398" height="252" key="GridCell.Tab.0.right" timestamp="1587466655495">
+    <state width="1398" height="252" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1587480083683" />
+    <state width="1398" height="252" key="GridCell.Tab.0.right" timestamp="1587480083684">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1587466655495" />
-    <state width="1398" height="252" key="GridCell.Tab.1.bottom" timestamp="1587466655497">
+    <state width="1398" height="252" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1587480083684" />
+    <state width="1398" height="252" key="GridCell.Tab.1.bottom" timestamp="1587480083687">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587466655497" />
-    <state width="1398" height="252" key="GridCell.Tab.1.center" timestamp="1587466655496">
+    <state width="1398" height="252" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587480083687" />
+    <state width="1398" height="252" key="GridCell.Tab.1.center" timestamp="1587480083686">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1587466655496" />
-    <state width="1398" height="252" key="GridCell.Tab.1.left" timestamp="1587466655496">
+    <state width="1398" height="252" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1587480083686" />
+    <state width="1398" height="252" key="GridCell.Tab.1.left" timestamp="1587480083685">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1587466655496" />
-    <state width="1398" height="252" key="GridCell.Tab.1.right" timestamp="1587466655497">
+    <state width="1398" height="252" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1587480083685" />
+    <state width="1398" height="252" key="GridCell.Tab.1.right" timestamp="1587480083686">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1587466655497" />
+    <state width="1398" height="252" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1587480083686" />
     <state x="185" y="32" key="SettingsEditor" timestamp="1586522957794">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -171,5 +179,16 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="97" y="126" key="new project wizard/0.23.1440.826@0.23.1440.826" timestamp="1586603116731" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ControlService/src/main/java/ControlService/Application1.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
