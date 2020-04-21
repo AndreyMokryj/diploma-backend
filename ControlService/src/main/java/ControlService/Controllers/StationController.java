@@ -18,7 +18,8 @@ public class StationController {
     @GetMapping(path="/")
     public @ResponseBody
     String getUserId(HttpServletRequest request) {
-        String uri = request.getRequestURI();
+        String uri = request.getRemoteHost();
+//        String uri = request.getRequestURI();
 //uri = "/context/someAction"
         String url = request.getRequestURL().toString();
 // url = "http://server.name:8080/context/someAction"
