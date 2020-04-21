@@ -1,6 +1,8 @@
 package ControlService.Entities;
 
 import ControlService.vo.UserVO;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,6 +14,9 @@ public class UserE {
     private String password;
     private String phone;
     private String email;
+
+    @Column(name = "station_url")
+    private String stationUrl;
 
     public String getUsername() {
         return username;
@@ -65,5 +70,13 @@ public class UserE {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getStationUrl() {
+        return stationUrl;
+    }
+
+    public void setStationUrl(String stationUrl) {
+        this.stationUrl = stationUrl;
     }
 }
