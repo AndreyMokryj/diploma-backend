@@ -3,8 +3,6 @@ package PowerPlantPackage.Workflow;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +12,7 @@ public class WorkProcess {
     private WorkProcess(){
 //        panels = new ArrayList<PanelE>();
         restTemplate = new RestTemplate();
+        userId = null;
     }
 
     public static WorkProcess getInstance(){
@@ -25,17 +24,24 @@ public class WorkProcess {
 
     public List panels;
     private RestTemplate restTemplate;
+    private String userId;
 
     public void execute(){
-        String url = "";
-        try {
-            url = InetAddress.getLocalHost().getHostAddress()  ;
-        } catch (UnknownHostException e) {
-
+        if(!(userId == null)) {
+            panels = (List) (restTemplate.exchange("http://localhost:4444/panels/", HttpMethod.GET, null, Iterable.class).getBody());
+            System.out.println("Task executed on " + new Date());
         }
-        String userId = restTemplate.postForObject("http://localhost:4444/connect/", url, String.class);
-//        String userId1 = restTemplate.exchange("http://localhost:4444/connect/", HttpMethod.GET, null, String.class).getBody();
-        panels = (List) (restTemplate.exchange("http://localhost:4444/panels/", HttpMethod.GET, null, Iterable.class).getBody());
-        System.out.println("Task executed on " + new Date());
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public RestTemplate getRestTemplate(){
+        return restTemplate;
     }
 }
