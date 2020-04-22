@@ -28,7 +28,14 @@ public class MyListener implements ApplicationListener<ServletWebServerInitializ
             url = "http://" + host + ":" + port + "/";
         }
 
-        String userId = WorkProcess.getInstance().getRestTemplate().postForObject("http://localhost:4444/connect/", url, String.class);
+        String userId = null;
+        while (userId == null) {
+            try {
+                userId = WorkProcess.getInstance().getRestTemplate().postForObject("http://localhost:4444/connect/", url, String.class);
+                Thread.sleep(10000L);
+            } catch (Exception e) {
+            }
+        }
         WorkProcess.getInstance().setUserId(userId);
     }
 }
