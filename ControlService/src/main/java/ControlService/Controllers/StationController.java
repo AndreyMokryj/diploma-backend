@@ -15,19 +15,17 @@ public class StationController {
     private UserRepository userRepository;
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="/")
+    @PostMapping(path="/")
     public @ResponseBody
-    String getUserId(HttpServletRequest request) {
-        String uri = request.getRemoteHost();
-//        String uri = request.getRequestURI();
-//uri = "/context/someAction"
-        String url = request.getRequestURL().toString();
-// url = "http://server.name:8080/context/someAction"
-        String ctxPath = request.getContextPath();
-// ctxPath = "/context";
-        url = url.replaceFirst(uri, "");
-// url = "http://server.name:8080"
+    String getUserId(@RequestBody String url) {
+        return userRepository.findByUrl(url);
+//        return userRepository.findByUrl(request.getURI().getHost());
+    }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/")
+    public String getUserIdg(HttpServletRequest request) {
+        String url = request.getHeader("X-FORWARDED-FOR");
         return userRepository.findByUrl(url);
 //        return userRepository.findByUrl(request.getURI().getHost());
     }
