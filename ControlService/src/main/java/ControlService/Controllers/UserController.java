@@ -42,15 +42,15 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/check/")
-    public boolean checkUser(@RequestBody UserVO userVO) {
+    public UserE checkUser(@RequestBody UserVO userVO) {
         UserE user = UserE.fromVO((UserVO) userVO);
         UserE savedUser;
         try {
             savedUser = retrieveUser(user.getUsername());
-            return savedUser.getPassword().equals(user.getPassword());
+            return (savedUser.getPassword().equals(user.getPassword())) ? savedUser : null;
         }
         catch (Exception e) {
-            return false;
+            return null;
         }
 
     }

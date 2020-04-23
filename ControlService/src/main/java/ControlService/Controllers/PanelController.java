@@ -23,6 +23,13 @@ public class PanelController {
     }
 
     @CrossOrigin(origins = "*")
+    @GetMapping(path="/userId/{userId}")
+    public @ResponseBody
+    Iterable<PanelE> getByUserId(@PathVariable String userId) {
+        return panelRepository.findByUserId(userId);
+    }
+
+    @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
     PanelE getById(@PathVariable String id) {
