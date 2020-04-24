@@ -12,10 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="03c6e7cf-7908-4ff9-b123-8b29fe98f266" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/vo/PanelVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Model/PanelVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/vo/PreviousVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Model/PreviousVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/vo/StateVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Model/StateVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/vo/UserVO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SunService/src/main/java/SunPackage/Controllers/SunController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SunService/src/main/java/SunPackage/Controllers/SunController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +30,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="f5eb777a7f1f5902c165ce17e8b2f6bb928b916e" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aLiDM6QVagtF16Ya22GU450fsv" />
@@ -70,7 +71,7 @@
       <recent name="$PROJECT_DIR$/ControlService/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PowerPlantService">
+  <component name="RunManager" selected="Spring Boot.SunService">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="SunService" />
       <option name="VM_PARAMETERS" />
@@ -216,38 +217,38 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="100" y="123" width="1240" height="606" key="DiffContextDialog/0.23.1440.826@0.23.1440.826" timestamp="1586521742938" />
-    <state width="1398" height="252" key="GridCell.Tab.0.bottom" timestamp="1587746863057">
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom" timestamp="1587753017804">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587746863057" />
-    <state width="1398" height="252" key="GridCell.Tab.0.center" timestamp="1587746863056">
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587753017804" />
+    <state width="1398" height="252" key="GridCell.Tab.0.center" timestamp="1587753017803">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1587746863056" />
-    <state width="1398" height="252" key="GridCell.Tab.0.left" timestamp="1587746863056">
+    <state width="1398" height="252" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1587753017803" />
+    <state width="1398" height="252" key="GridCell.Tab.0.left" timestamp="1587753017803">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1587746863056" />
-    <state width="1398" height="252" key="GridCell.Tab.0.right" timestamp="1587746863056">
+    <state width="1398" height="252" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1587753017803" />
+    <state width="1398" height="252" key="GridCell.Tab.0.right" timestamp="1587753017804">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1587746863056" />
-    <state width="1398" height="252" key="GridCell.Tab.1.bottom" timestamp="1587746863058">
+    <state width="1398" height="252" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1587753017804" />
+    <state width="1398" height="252" key="GridCell.Tab.1.bottom" timestamp="1587753017805">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587746863058" />
-    <state width="1398" height="252" key="GridCell.Tab.1.center" timestamp="1587746863057">
+    <state width="1398" height="252" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1587753017805" />
+    <state width="1398" height="252" key="GridCell.Tab.1.center" timestamp="1587753017805">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1587746863057" />
-    <state width="1398" height="252" key="GridCell.Tab.1.left" timestamp="1587746863057">
+    <state width="1398" height="252" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1587753017805" />
+    <state width="1398" height="252" key="GridCell.Tab.1.left" timestamp="1587753017804">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1587746863057" />
-    <state width="1398" height="252" key="GridCell.Tab.1.right" timestamp="1587746863057">
+    <state width="1398" height="252" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1587753017804" />
+    <state width="1398" height="252" key="GridCell.Tab.1.right" timestamp="1587753017805">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="252" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1587746863057" />
+    <state width="1398" height="252" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1587753017805" />
     <state width="1398" height="257" key="GridCell.Tab.2.bottom" timestamp="1587669214074">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -264,6 +265,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state width="1398" height="257" key="GridCell.Tab.2.right/0.23.1440.826@0.23.1440.826" timestamp="1587669214073" />
+    <state x="308" y="176" key="IDE.errors.dialog" timestamp="1587752895330">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="308" y="176" key="IDE.errors.dialog/0.23.1440.826@0.23.1440.826" timestamp="1587752895330" />
     <state x="258" y="88" width="855" height="676" key="Maven.ArtifactSearchDialog" timestamp="1587561442653">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -272,6 +277,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="185" y="32" key="SettingsEditor/0.23.1440.826@0.23.1440.826" timestamp="1586522957794" />
+    <state x="463" y="146" key="git4idea.branch.GitSmartOperationDialog" timestamp="1587752824974">
+      <screen x="0" y="23" width="1440" height="826" />
+    </state>
+    <state x="463" y="146" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.826@0.23.1440.826" timestamp="1587752824974" />
     <state x="97" y="126" key="new project wizard" timestamp="1587495428998">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
