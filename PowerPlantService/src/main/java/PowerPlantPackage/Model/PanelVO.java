@@ -1,4 +1,4 @@
-package PowerPlantPackage.vo;
+package PowerPlantPackage.Model;
 
 public class PanelVO {
     private String id;
