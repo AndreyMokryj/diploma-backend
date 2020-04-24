@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SunService" />
         <module name="ControlService" />
+        <module name="SunService1" />
         <module name="PowerPlantService" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
       <module name="ControlService" target="1.8" />
       <module name="PowerPlantService" target="1.8" />
       <module name="SunService" target="1.8" />
+      <module name="SunService1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -22,6 +24,7 @@
       <module name="ControlService" options="-parameters" />
       <module name="PowerPlantService" options="-parameters" />
       <module name="SunService" options="-parameters" />
+      <module name="SunService1" options="-parameters" />
     </option>
   </component>
 </project>
