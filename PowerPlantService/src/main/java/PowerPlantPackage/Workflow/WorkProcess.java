@@ -8,12 +8,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class WorkProcess {
     private static WorkProcess workProcess;
 
     private WorkProcess(){
-        panels = new ArrayList<PanelVO>();
+        panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
         index = 0;
@@ -30,7 +31,7 @@ public class WorkProcess {
     public final String sunUrl = "http://localhost:4441/sun/power-coef/";
 
 
-    public List<PanelVO> panels;
+    public List<Object> panels;
     private RestTemplate restTemplate;
     private String userId;
 
@@ -40,7 +41,7 @@ public class WorkProcess {
         if(!(userId == null)) {
             panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
             for (Object object : panels){
-                PanelVO panel = (PanelVO) object;
+                PanelVO panel = PanelVO.fromMap((Map) object);
                 System.out.println("Something");
                 double prevPower = getPower(panel);
                 System.out.println("Previous power: " + prevPower);
@@ -51,7 +52,7 @@ public class WorkProcess {
     }
 
     public double getPower(PanelVO panel){
-        double coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), double.class);
+        double coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), Double.class);
         return coef * panel.getNominalPower();
     }
 

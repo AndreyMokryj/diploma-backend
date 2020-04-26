@@ -21,6 +21,9 @@ public class SunController {
     public @ResponseBody
     double getPowerCoef(@RequestBody Coordinates coordinates, @PathVariable int index) {
         Coordinates sunCoordinates = SunCoordinatesList.getCoordinates(index);
+        if(sunCoordinates == null){
+            return -1;
+        }
         double daz = Math.abs(coordinates.getAzimuth() - sunCoordinates.getAzimuth());
         double dalt = Math.abs(coordinates.getAltitude() - sunCoordinates.getAltitude());
         if (daz >= 90 || dalt >= 90){
