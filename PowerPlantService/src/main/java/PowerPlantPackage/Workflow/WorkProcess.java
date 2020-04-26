@@ -77,19 +77,21 @@ public class WorkProcess {
                         case 0:
                             if(panel.getAzimuth() < 90) {
                                 panel.setAzimuth(panel.getAzimuth() + 1);
+                                break;
                             }
                             else {
                                 code++;
                             }
-                            break;
+
                         case 1:
                             if(panel.getAzimuth() > 5) {
                                 panel.setAzimuth(panel.getAzimuth() - 1);
+                                break;
                             }
                             else {
                                 code++;
                             }
-                            break;
+
                         case 2:
                             if(panel.getAltitude() < 359) {
                                 panel.setAltitude(panel.getAltitude() + 1);
