@@ -12,9 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03c6e7cf-7908-4ff9-b123-8b29fe98f266" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Model/PanelVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Model/PanelVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SunService1/src/main/java/SunPackage1/Controllers/SunController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SunService1/src/main/java/SunPackage1/Controllers/SunController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +180,7 @@
       <workItem from="1586522869589" duration="15101000" />
       <workItem from="1587392904725" duration="58000" />
       <workItem from="1587392990264" duration="7163000" />
-      <workItem from="1587754096542" duration="9021000" />
+      <workItem from="1587754096542" duration="10816000" />
     </task>
     <servers />
   </component>
@@ -313,12 +311,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java</url>
-          <line>54</line>
+          <line>99</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java</url>
-          <line>55</line>
+          <line>100</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>

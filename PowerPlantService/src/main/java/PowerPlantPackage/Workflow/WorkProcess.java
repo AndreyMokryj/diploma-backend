@@ -2,13 +2,11 @@ package PowerPlantPackage.Workflow;
 
 import PowerPlantPackage.Model.Coordinates;
 import PowerPlantPackage.Model.PanelVO;
+import PowerPlantPackage.Model.StateVO;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WorkProcess {
     private static WorkProcess workProcess;
@@ -42,11 +40,62 @@ public class WorkProcess {
             panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
             for (Object object : panels){
                 PanelVO panel = PanelVO.fromMap((Map) object);
-                System.out.println("Something");
+//                System.out.println("Something");
                 double prevPower = getPower(panel);
-                System.out.println("Previous power: " + prevPower);
-            }
+                if (prevPower >= 10){
+                    Random random = new Random();
 
+                    StateVO prevState = getState(panel);
+                    double azPlus = prevState.getAzPlus();
+                    double azMinus = prevState.getAzMinus();
+                    double altPlus = prevState.getAltPlus();
+                    double altMinus = prevState.getAltMinus();
+
+                    int code = 0;
+
+                    int randomInt = random.nextInt(20);
+                    if(randomInt == 5){
+                        code = random.nextInt(4);
+                    }
+                    else {
+                        if (azPlus >= azMinus && azPlus >= altPlus && azPlus >= altMinus){
+                            code = 0;
+                        }
+                        if (azMinus >= azPlus && azMinus >= altPlus && azMinus >= altMinus){
+                            code = 1;
+                        }
+                        if (altPlus >= azMinus && altPlus >= azPlus && altPlus >= altMinus){
+                            code = 2;
+                        }
+                        if (altMinus >= azMinus && altMinus >= azPlus && altMinus >= altPlus){
+                            code = 3;
+                        }
+                    }
+
+                    switch (code){
+                        case 0:
+                            panel.setAzimuth(panel.getAzimuth() + 1);
+                            break;
+                        case 1:
+                            panel.setAzimuth(panel.getAzimuth() - 1);
+                            break;
+                        case 2:
+                            panel.setAltitude(panel.getAltitude() + 1);
+                            break;
+                        case 3:
+                            panel.setAltitude(panel.getAltitude() - 1);
+                            break;
+                    }
+
+                    double newPower = getPower(panel);
+
+                    double diff = newPower - prevPower;
+                }
+                else {
+                    System.out.println("No sun found");
+                }
+            }
+            index++;
             System.out.println("Task executed on " + new Date());
         }
     }
@@ -54,6 +103,15 @@ public class WorkProcess {
     public double getPower(PanelVO panel){
         double coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), Double.class);
         return coef * panel.getNominalPower();
+    }
+
+    public StateVO getState(PanelVO panel){
+        StateVO stateVOSent = new StateVO();
+        stateVOSent.setPanelId(panel.getId());
+        stateVOSent.setAzimuth(panel.getAzimuth());
+        stateVOSent.setAltitude(panel.getAltitude());
+        StateVO state = restTemplate.postForObject(baseUrl + "states/get/", stateVOSent, StateVO.class);
+        return state;
     }
 
     public String getUserId() {
