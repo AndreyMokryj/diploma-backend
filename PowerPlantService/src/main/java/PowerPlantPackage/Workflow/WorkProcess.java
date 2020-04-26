@@ -75,16 +75,36 @@ public class WorkProcess {
 
                     switch (code){
                         case 0:
-                            panel.setAzimuth(panel.getAzimuth() + 1);
+                            if(panel.getAzimuth() < 90) {
+                                panel.setAzimuth(panel.getAzimuth() + 1);
+                            }
+                            else {
+                                code++;
+                            }
                             break;
                         case 1:
-                            panel.setAzimuth(panel.getAzimuth() - 1);
+                            if(panel.getAzimuth() > 5) {
+                                panel.setAzimuth(panel.getAzimuth() - 1);
+                            }
+                            else {
+                                code++;
+                            }
                             break;
                         case 2:
-                            panel.setAltitude(panel.getAltitude() + 1);
+                            if(panel.getAltitude() < 359) {
+                                panel.setAltitude(panel.getAltitude() + 1);
+                            }
+                            else {
+                                panel.setAltitude(0);
+                            }
                             break;
                         case 3:
-                            panel.setAltitude(panel.getAltitude() - 1);
+                            if(panel.getAltitude() > 0) {
+                                panel.setAltitude(panel.getAltitude() - 1);
+                            }
+                            else {
+                                panel.setAltitude(359);
+                            }
                             break;
                     }
 
@@ -116,6 +136,7 @@ public class WorkProcess {
                     }
 
                     sendUpdate(previousVO);
+                    updatePanel(panel);
                 }
                 else {
                     System.out.println("No sun found");
@@ -142,6 +163,10 @@ public class WorkProcess {
 
     public void sendUpdate(PreviousVO previousVO){
         restTemplate.postForObject(baseUrl + "states/update/", previousVO, void.class);
+    }
+
+    public void updatePanel(PanelVO panelVO){
+        restTemplate.postForObject(baseUrl + "panels/" + panelVO.getId(), panelVO, void.class);
     }
 
     public String getUserId() {

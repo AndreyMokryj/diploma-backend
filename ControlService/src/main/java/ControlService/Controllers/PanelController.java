@@ -2,6 +2,7 @@ package ControlService.Controllers;
 
 import ControlService.Entities.PanelE;
 import ControlService.Repositories.PanelRepository;
+import ControlService.vo.PanelVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,13 @@ public class PanelController {
     PanelE getById(@PathVariable String id) {
         Optional<PanelE> panel = panelRepository.findById(id);
         return panel.get();
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/{id}")
+    public @ResponseBody
+    void updateById(@PathVariable String id, @RequestBody PanelVO panelVO) {
+        PanelE panel = PanelE.fromVO(panelVO);
+        panelRepository.save(panel);
     }
 }
