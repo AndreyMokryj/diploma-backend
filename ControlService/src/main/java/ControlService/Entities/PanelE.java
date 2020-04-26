@@ -1,7 +1,6 @@
 package ControlService.Entities;
 
 import ControlService.vo.PanelVO;
-import ControlService.vo.UserVO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +23,9 @@ public class PanelE {
     @Column(name = "user_id")
     private String userId;
 
+    private int azimuth;
+    private int altitude;
+
 
     public static PanelE fromVO(PanelVO panelVO){
         PanelE panel = new PanelE();
@@ -32,6 +34,8 @@ public class PanelE {
         panel.setModel(panelVO.getModel());
         panel.setNominalPower(panelVO.getNominalPower());
         panel.setUserId(panelVO.getUserId());
+        panel.setAzimuth(panelVO.getAzimuth());
+        panel.setAltitude(panelVO.getAltitude());
         return panel;
     }
 
@@ -73,5 +77,21 @@ public class PanelE {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public int getAzimuth() {
+        return azimuth;
+    }
+
+    public void setAzimuth(int azimuth) {
+        this.azimuth = azimuth;
+    }
+
+    public int getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(int altitude) {
+        this.altitude = altitude;
     }
 }

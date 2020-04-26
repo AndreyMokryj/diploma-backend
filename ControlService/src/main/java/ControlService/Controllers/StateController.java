@@ -34,38 +34,38 @@ public class StateController {
     }
 
     private StateE getState(StateVO stateVO) {
-        StateE direction = StateE.fromVO(stateVO);
+        StateE state = StateE.fromVO(stateVO);
         try {
-            Optional<StateE> direction1 = stateRepository.findByParams(
-                    direction.getPanelId(),
+            Optional<StateE> state1 = stateRepository.findByParams(
+                    state.getPanelId(),
 //                    direction.getPower(),
-                    direction.getAzimuth(),
-                    direction.getAltitude()
+                    state.getAzimuth(),
+                    state.getAltitude()
                 );
-            return direction1.get();
+            return state1.get();
         }
         catch (Exception ex){
-            direction.setId(UUID.randomUUID().toString());
-            StateE saved = stateRepository.save(direction);
+            state.setId(UUID.randomUUID().toString());
+            StateE saved = stateRepository.save(state);
             return saved;
         }
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/get/")
-    public StateE getDir(@RequestBody StateVO stateVO) {
-        StateE direction = getState(stateVO);
-        return direction;
+    public StateE getSt(@RequestBody StateVO stateVO) {
+        StateE state = getState(stateVO);
+        return state;
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/update/")
-    public void updatePrevDirection(@RequestBody PreviousVO previousVO) {
-        StateE direction = getById(previousVO.getId());
-        direction.setAltPlus(direction.getAltPlus() + previousVO.getAltPlus());
-        direction.setAltMinus(direction.getAltMinus() + previousVO.getAltMinus());
-        direction.setAzPlus(direction.getAzPlus() + previousVO.getAzPlus());
-        direction.setAzMinus(direction.getAzMinus() + previousVO.getAzMinus());
-        stateRepository.save(direction);
+    public void updatePrevState(@RequestBody PreviousVO previousVO) {
+        StateE state = getById(previousVO.getId());
+        state.setAltPlus(state.getAltPlus() + previousVO.getAltPlus());
+        state.setAltMinus(state.getAltMinus() + previousVO.getAltMinus());
+        state.setAzPlus(state.getAzPlus() + previousVO.getAzPlus());
+        state.setAzMinus(state.getAzMinus() + previousVO.getAzMinus());
+        stateRepository.save(state);
     }
 }
