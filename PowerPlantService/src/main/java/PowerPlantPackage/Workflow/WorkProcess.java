@@ -1,5 +1,6 @@
 package PowerPlantPackage.Workflow;
 
+import PowerPlantPackage.Model.Coordinates;
 import PowerPlantPackage.Model.PanelVO;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
@@ -26,23 +27,32 @@ public class WorkProcess {
     }
 
     public final String baseUrl = "http://localhost:4444/";
+    public final String sunUrl = "http://localhost:4441/sun/power-coef/";
+
+
     public List<PanelVO> panels;
     private RestTemplate restTemplate;
     private String userId;
 
     private int index;
-//    private String previousId;
-//    private String currentId;
 
     public void execute(){
         if(!(userId == null)) {
-            panels = (List<PanelVO>) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
-            for (PanelVO panel : panels){
-                int a = 0;
+            panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
+            for (Object object : panels){
+                PanelVO panel = (PanelVO) object;
+                System.out.println("Something");
+                double prevPower = getPower(panel);
+                System.out.println("Previous power: " + prevPower);
             }
 
             System.out.println("Task executed on " + new Date());
         }
+    }
+
+    public double getPower(PanelVO panel){
+        double coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), double.class);
+        return coef * panel.getNominalPower();
     }
 
     public String getUserId() {
