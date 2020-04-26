@@ -1,5 +1,6 @@
 package PowerPlantPackage.Workflow;
 
+import PowerPlantPackage.Model.PanelVO;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,13 +23,14 @@ public class WorkProcess {
         return workProcess;
     }
 
-    public List panels;
+    public final String baseUrl = "http://localhost:4444/";
+    public List<PanelVO> panels;
     private RestTemplate restTemplate;
     private String userId;
 
     public void execute(){
         if(!(userId == null)) {
-            panels = (List) (restTemplate.exchange("http://localhost:4444/panels/", HttpMethod.GET, null, Iterable.class).getBody());
+            panels = (List<PanelVO>) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
             System.out.println("Task executed on " + new Date());
         }
     }

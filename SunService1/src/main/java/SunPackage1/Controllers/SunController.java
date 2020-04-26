@@ -24,7 +24,6 @@ public class SunController {
         double daz = Math.abs(coordinates.getAzimuth() - sunCoordinates.getAzimuth());
         double dalt = Math.abs(coordinates.getAltitude() - sunCoordinates.getAltitude());
         if (daz >= 90 || dalt >= 90){
-
             return 0;
         }
         double coef = Math.cos(daz * Math.PI / 180.0) * Math.cos(dalt * Math.PI / 180.0);
