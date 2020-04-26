@@ -2,6 +2,7 @@ package PowerPlantPackage.Workflow;
 
 import PowerPlantPackage.Model.Coordinates;
 import PowerPlantPackage.Model.PanelVO;
+import PowerPlantPackage.Model.PreviousVO;
 import PowerPlantPackage.Model.StateVO;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
@@ -87,9 +88,34 @@ public class WorkProcess {
                             break;
                     }
 
+                    StateVO newState = getState(panel);
                     double newPower = getPower(panel);
 
                     double diff = newPower - prevPower;
+                    PreviousVO previousVO = new PreviousVO();
+                    PreviousVO currentVO = new PreviousVO();
+                    previousVO.setId(prevState.getId());
+                    currentVO.setId(newState.getId());
+                    switch (code){
+                        case 0:
+                            previousVO.setAzPlus(diff);
+                            currentVO.setAzPlus(diff / 10);
+                            break;
+                        case 1:
+                            previousVO.setAzMinus(diff);
+                            currentVO.setAzMinus(diff / 10);
+                            break;
+                        case 2:
+                            previousVO.setAltPlus(diff);
+                            currentVO.setAltPlus(diff / 10);
+                            break;
+                        case 3:
+                            previousVO.setAltMinus(diff);
+                            currentVO.setAltMinus(diff / 10);
+                            break;
+                    }
+
+                    sendUpdate(previousVO);
                 }
                 else {
                     System.out.println("No sun found");
@@ -112,6 +138,10 @@ public class WorkProcess {
         stateVOSent.setAltitude(panel.getAltitude());
         StateVO state = restTemplate.postForObject(baseUrl + "states/get/", stateVOSent, StateVO.class);
         return state;
+    }
+
+    public void sendUpdate(PreviousVO previousVO){
+        restTemplate.postForObject(baseUrl + "states/update/", previousVO, void.class);
     }
 
     public String getUserId() {

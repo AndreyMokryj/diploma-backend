@@ -11,7 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03c6e7cf-7908-4ff9-b123-8b29fe98f266" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +179,7 @@
       <workItem from="1586522869589" duration="15101000" />
       <workItem from="1587392904725" duration="58000" />
       <workItem from="1587392990264" duration="7163000" />
-      <workItem from="1587754096542" duration="10816000" />
+      <workItem from="1587754096542" duration="11805000" />
     </task>
     <servers />
   </component>
@@ -307,20 +306,6 @@
     <state x="97" y="126" key="new project wizard/0.23.1440.826@0.23.1440.826" timestamp="1587753605621" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/PowerPlantService/src/main/java/PowerPlantPackage/Workflow/WorkProcess.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo typeName="org.apache.catalina.connector.Request" fieldName="remotePort" />
