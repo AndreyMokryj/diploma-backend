@@ -44,101 +44,105 @@ public class WorkProcess {
 //                System.out.println("Something");
                 double prevPower = getPower(panel);
                 if (prevPower >= 10){
-                    Random random = new Random();
+                    double azPlus = 0;
+                    double azMinus = 0;
+                    double altPlus = 0;
+                    double altMinus = 0;
 
-                    StateVO prevState = getState(panel);
-                    double azPlus = prevState.getAzPlus();
-                    double azMinus = prevState.getAzMinus();
-                    double altPlus = prevState.getAltPlus();
-                    double altMinus = prevState.getAltMinus();
+                    while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
 
-                    int code = 0;
+                        Random random = new Random();
 
-                    int randomInt = random.nextInt(20);
-                    if(randomInt == 5){
-                        code = random.nextInt(4);
-                    }
-                    else {
-                        if (azPlus >= azMinus && azPlus >= altPlus && azPlus >= altMinus){
-                            code = 0;
-                        }
-                        if (azMinus >= azPlus && azMinus >= altPlus && azMinus >= altMinus){
-                            code = 1;
-                        }
-                        if (altPlus >= azMinus && altPlus >= azPlus && altPlus >= altMinus){
-                            code = 2;
-                        }
-                        if (altMinus >= azMinus && altMinus >= azPlus && altMinus >= altPlus){
-                            code = 3;
-                        }
-                    }
+                        StateVO prevState = getState(panel);
+                        azPlus = prevState.getAzPlus();
+                        azMinus = prevState.getAzMinus();
+                        altPlus = prevState.getAltPlus();
+                        altMinus = prevState.getAltMinus();
 
-                    switch (code){
-                        case 0:
-                            if(panel.getAzimuth() < 90) {
-                                panel.setAzimuth(panel.getAzimuth() + 1);
+                        int code = 0;
+
+                        int randomInt = random.nextInt(20);
+                        if (randomInt == 5) {
+                            code = random.nextInt(4);
+                        } else {
+                            if (azPlus >= azMinus && azPlus >= altPlus && azPlus >= altMinus) {
+                                code = 2;
+                            }
+                            if (azMinus >= azPlus && azMinus >= altPlus && azMinus >= altMinus) {
+                                code = 3;
+                            }
+                            if (altPlus >= azMinus && altPlus >= azPlus && altPlus >= altMinus) {
+                                code = 0;
+                            }
+                            if (altMinus >= azMinus && altMinus >= azPlus && altMinus >= altPlus) {
+                                code = 1;
+                            }
+                        }
+
+                        switch (code) {
+                            case 0:
+                                if (panel.getAltitude() < 90) {
+                                    panel.setAltitude(panel.getAltitude() + 1);
+                                    break;
+                                } else {
+                                    code++;
+                                }
+
+                            case 1:
+                                if (panel.getAltitude() > 5) {
+                                    panel.setAltitude(panel.getAltitude() - 1);
+                                    break;
+                                } else {
+                                    code++;
+                                }
+
+                            case 2:
+                                if (panel.getAzimuth() < 359) {
+                                    panel.setAzimuth(panel.getAzimuth() + 1);
+                                } else {
+                                    panel.setAzimuth(0);
+                                }
                                 break;
-                            }
-                            else {
-                                code++;
-                            }
-
-                        case 1:
-                            if(panel.getAzimuth() > 5) {
-                                panel.setAzimuth(panel.getAzimuth() - 1);
+                            case 3:
+                                if (panel.getAzimuth() > 0) {
+                                    panel.setAzimuth(panel.getAzimuth() - 1);
+                                } else {
+                                    panel.setAzimuth(359);
+                                }
                                 break;
-                            }
-                            else {
-                                code++;
-                            }
+                        }
 
-                        case 2:
-                            if(panel.getAltitude() < 359) {
-                                panel.setAltitude(panel.getAltitude() + 1);
-                            }
-                            else {
-                                panel.setAltitude(0);
-                            }
-                            break;
-                        case 3:
-                            if(panel.getAltitude() > 0) {
-                                panel.setAltitude(panel.getAltitude() - 1);
-                            }
-                            else {
-                                panel.setAltitude(359);
-                            }
-                            break;
+                        StateVO newState = getState(panel);
+                        double newPower = getPower(panel);
+
+                        double diff = newPower - prevPower;
+                        PreviousVO previousVO = new PreviousVO();
+                        PreviousVO currentVO = new PreviousVO();
+                        previousVO.setId(prevState.getId());
+                        currentVO.setId(newState.getId());
+                        switch (code) {
+                            case 0:
+                                previousVO.setAzPlus(diff);
+                                currentVO.setAzPlus(diff / 10);
+                                break;
+                            case 1:
+                                previousVO.setAzMinus(diff);
+                                currentVO.setAzMinus(diff / 10);
+                                break;
+                            case 2:
+                                previousVO.setAltPlus(diff);
+                                currentVO.setAltPlus(diff / 10);
+                                break;
+                            case 3:
+                                previousVO.setAltMinus(diff);
+                                currentVO.setAltMinus(diff / 10);
+                                break;
+                        }
+
+                        System.out.println("Current power: " + newPower);
+                        sendUpdate(previousVO);
+                        updatePanel(panel);
                     }
-
-                    StateVO newState = getState(panel);
-                    double newPower = getPower(panel);
-
-                    double diff = newPower - prevPower;
-                    PreviousVO previousVO = new PreviousVO();
-                    PreviousVO currentVO = new PreviousVO();
-                    previousVO.setId(prevState.getId());
-                    currentVO.setId(newState.getId());
-                    switch (code){
-                        case 0:
-                            previousVO.setAzPlus(diff);
-                            currentVO.setAzPlus(diff / 10);
-                            break;
-                        case 1:
-                            previousVO.setAzMinus(diff);
-                            currentVO.setAzMinus(diff / 10);
-                            break;
-                        case 2:
-                            previousVO.setAltPlus(diff);
-                            currentVO.setAltPlus(diff / 10);
-                            break;
-                        case 3:
-                            previousVO.setAltMinus(diff);
-                            currentVO.setAltMinus(diff / 10);
-                            break;
-                    }
-
-                    sendUpdate(previousVO);
-                    updatePanel(panel);
                 }
                 else {
                     System.out.println("No sun found");
