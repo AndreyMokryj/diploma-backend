@@ -49,8 +49,12 @@ public class WorkProcess {
                     double altPlus = 0;
                     double altMinus = 0;
 
-                    while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
+                    double diff = 1;
 
+                    while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
+//                    while (Math.abs(diff) > 0.015) {
+
+                        prevPower = getPower(panel);
                         Random random = new Random();
 
                         StateVO prevState = getState(panel);
@@ -115,32 +119,45 @@ public class WorkProcess {
                         StateVO newState = getState(panel);
                         double newPower = getPower(panel);
 
-                        double diff = newPower - prevPower;
+                         diff = newPower - prevPower;
                         PreviousVO previousVO = new PreviousVO();
                         PreviousVO currentVO = new PreviousVO();
                         previousVO.setId(prevState.getId());
                         currentVO.setId(newState.getId());
 
-                        double k = 4;
+                        double k = 10;
                         switch (code) {
                             case 0:
                                 previousVO.setAltPlus(diff);
                                 currentVO.setAltPlus(diff / k);
+
+                                previousVO.setAltMinus(-diff / k);
+                                currentVO.setAltMinus(-diff / k / k);
                                 break;
                             case 1:
                                 previousVO.setAltMinus(diff);
                                 currentVO.setAltMinus(diff / k);
+
+                                previousVO.setAltPlus(-diff / k);
+                                currentVO.setAltPlus(-diff / k / k);
                                 break;
                             case 2:
                                 previousVO.setAzPlus(diff);
                                 currentVO.setAzPlus(diff / k);
+
+                                previousVO.setAzMinus(-diff / k);
+                                currentVO.setAzMinus(-diff / k / k);
                                 break;
                             case 3:
                                 previousVO.setAzMinus(diff);
                                 currentVO.setAzMinus(diff / k);
+
+                                previousVO.setAzPlus(-diff / k);
+                                currentVO.setAzPlus(-diff / k / k);
                                 break;
                         }
 
+                        System.out.println("Previous power: " + prevPower + "; panel name" + panel.getName());
                         System.out.println("Current power: " + newPower + "; panel name" + panel.getName());
                         sendUpdate(previousVO);
                         sendUpdate(currentVO);
@@ -171,11 +188,11 @@ public class WorkProcess {
     }
 
     public void sendUpdate(PreviousVO previousVO){
-        restTemplate.postForObject(baseUrl + "states/update/", previousVO, void.class);
+        Void response = restTemplate.postForObject(baseUrl + "states/update/", previousVO, void.class);
     }
 
     public void updatePanel(PanelVO panelVO){
-        restTemplate.postForObject(baseUrl + "panels/" + panelVO.getId(), panelVO, void.class);
+        Void response = restTemplate.postForObject(baseUrl + "panels/" + panelVO.getId(), panelVO, void.class);
     }
 
     public String getUserId() {
