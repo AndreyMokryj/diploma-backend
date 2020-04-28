@@ -16,7 +16,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 0;
+        index = 100;
     }
 
     public static WorkProcess getInstance(){
@@ -120,27 +120,30 @@ public class WorkProcess {
                         PreviousVO currentVO = new PreviousVO();
                         previousVO.setId(prevState.getId());
                         currentVO.setId(newState.getId());
+
+                        double k = 4;
                         switch (code) {
                             case 0:
-                                previousVO.setAzPlus(diff);
-                                currentVO.setAzPlus(diff / 10);
+                                previousVO.setAltPlus(diff);
+                                currentVO.setAltPlus(diff / k);
                                 break;
                             case 1:
-                                previousVO.setAzMinus(diff);
-                                currentVO.setAzMinus(diff / 10);
+                                previousVO.setAltMinus(diff);
+                                currentVO.setAltMinus(diff / k);
                                 break;
                             case 2:
-                                previousVO.setAltPlus(diff);
-                                currentVO.setAltPlus(diff / 10);
+                                previousVO.setAzPlus(diff);
+                                currentVO.setAzPlus(diff / k);
                                 break;
                             case 3:
-                                previousVO.setAltMinus(diff);
-                                currentVO.setAltMinus(diff / 10);
+                                previousVO.setAzMinus(diff);
+                                currentVO.setAzMinus(diff / k);
                                 break;
                         }
 
-                        System.out.println("Current power: " + newPower);
+                        System.out.println("Current power: " + newPower + "; panel name" + panel.getName());
                         sendUpdate(previousVO);
+                        sendUpdate(currentVO);
                         updatePanel(panel);
                     }
                 }
@@ -148,7 +151,7 @@ public class WorkProcess {
                     System.out.println("No sun found");
                 }
             }
-            index++;
+//            index++;
             System.out.println("Task executed on " + new Date());
         }
     }
