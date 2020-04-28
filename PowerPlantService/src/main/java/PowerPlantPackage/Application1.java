@@ -29,7 +29,7 @@ public class Application1 {
         long delay  = 1000L;
 
         //Period
-        long period = 50000L;
+        long period = 10000L;
         executor.scheduleAtFixedRate(repeatedTask, delay, period, TimeUnit.MILLISECONDS);
         Thread.sleep(delay + period * 3);
 //        executor.shutdown();

@@ -16,7 +16,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 100;
+        index = 0;
     }
 
     public static WorkProcess getInstance(){
@@ -41,20 +41,15 @@ public class WorkProcess {
             panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
             for (Object object : panels){
                 PanelVO panel = PanelVO.fromMap((Map) object);
-//                System.out.println("Something");
-                double prevPower = getPower(panel);
-                if (prevPower >= 10){
+                double power = getPower(panel);
+                if (power >= 10){
                     double azPlus = 0;
                     double azMinus = 0;
                     double altPlus = 0;
                     double altMinus = 0;
 
-                    double diff = 1;
-
                     while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
-//                    while (Math.abs(diff) > 0.015) {
-
-                        prevPower = getPower(panel);
+                        double prevPower = getPower(panel);
                         Random random = new Random();
 
                         StateVO prevState = getState(panel);
@@ -119,7 +114,7 @@ public class WorkProcess {
                         StateVO newState = getState(panel);
                         double newPower = getPower(panel);
 
-                         diff = newPower - prevPower;
+                        double diff = newPower - prevPower;
                         PreviousVO previousVO = new PreviousVO();
                         PreviousVO currentVO = new PreviousVO();
                         previousVO.setId(prevState.getId());
@@ -157,18 +152,21 @@ public class WorkProcess {
                                 break;
                         }
 
-                        System.out.println("Previous power: " + prevPower + "; panel name" + panel.getName());
-                        System.out.println("Current power: " + newPower + "; panel name" + panel.getName());
+//                        System.out.println("Previous power: " + prevPower + "; panel name" + panel.getName());
+//                        System.out.println("Current power: " + newPower + "; panel name" + panel.getName());
                         sendUpdate(previousVO);
                         sendUpdate(currentVO);
                         updatePanel(panel);
                     }
+
+                    System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude" + panel.getAltitude());
+
                 }
                 else {
                     System.out.println("No sun found");
                 }
             }
-//            index++;
+            index++;
             System.out.println("Task executed on " + new Date());
         }
     }
