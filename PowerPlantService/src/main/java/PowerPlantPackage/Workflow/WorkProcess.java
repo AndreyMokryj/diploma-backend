@@ -16,7 +16,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 55;
+        index = 700;
     }
 
     public static WorkProcess getInstance(){
@@ -156,8 +156,6 @@ public class WorkProcess {
                                 break;
                         }
 
-//                        System.out.println("Previous power: " + prevPower + "; panel name" + panel.getName());
-//                        System.out.println("Current power: " + newPower + "; panel name" + panel.getName());
                         sendUpdate(previousVO);
                         sendUpdate(currentVO);
                         updatePanel(panel);
@@ -176,8 +174,16 @@ public class WorkProcess {
     }
 
     public double getPower(PanelVO panel){
-        double coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), Double.class);
+        double coef = 0;
+        try {
+            coef = restTemplate.postForObject(sunUrl + index, new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), Double.class);
+        }
+        catch (Exception e){
+            coef = restTemplate.postForObject(sunUrl + "0", new Coordinates(panel.getAzimuth(), 0,0,panel.getAltitude(),0,0), Double.class);
+            index = 0;
+        }
         return coef * panel.getNominalPower();
+
     }
 
     public StateVO getState(PanelVO panel){
