@@ -16,7 +16,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 0;
+        index = 55;
     }
 
     public static WorkProcess getInstance(){
@@ -78,12 +78,15 @@ public class WorkProcess {
                             }
                         }
 
+                        PreviousVO previousVO = new PreviousVO();
+
                         switch (code) {
                             case 0:
                                 if (panel.getAltitude() < 90) {
                                     panel.setAltitude(panel.getAltitude() + 1);
                                     break;
                                 } else {
+                                    previousVO.setAltPlus(-1);
                                     code++;
                                 }
 
@@ -92,6 +95,7 @@ public class WorkProcess {
                                     panel.setAltitude(panel.getAltitude() - 1);
                                     break;
                                 } else {
+                                    previousVO.setAltMinus(-1);
                                     code++;
                                 }
 
@@ -115,7 +119,7 @@ public class WorkProcess {
                         double newPower = getPower(panel);
 
                         double diff = newPower - prevPower;
-                        PreviousVO previousVO = new PreviousVO();
+
                         PreviousVO currentVO = new PreviousVO();
                         previousVO.setId(prevState.getId());
                         currentVO.setId(newState.getId());
@@ -159,7 +163,7 @@ public class WorkProcess {
                         updatePanel(panel);
                     }
 
-                    System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude" + panel.getAltitude());
+                    System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude: " + panel.getAltitude() + "; index: " + index + "; power: " + getPower(panel));
 
                 }
                 else {
