@@ -43,7 +43,7 @@ public class WorkProcess {
                 PanelVO panel = PanelVO.fromMap((Map) object);
                 double power = getPower(panel);
                 if (power >= 10){
-//                    preparePanel(panel);
+                    reduceForPanel(panel.getId());
                     findSun(panel);
                 }
                 else {
@@ -69,9 +69,6 @@ public class WorkProcess {
         double azMinus = 0;
         double altPlus = 0;
         double altMinus = 0;
-
-        StateVO state = getState(panel);
-        prepareState(state);
 
         int iterator = 0;
         while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
@@ -225,6 +222,10 @@ public class WorkProcess {
 
     public void updateState(StateVO stateVO){
         Void response = restTemplate.postForObject(baseUrl + "states/change/", stateVO, void.class);
+    }
+
+    public void reduceForPanel(String panelId){
+        Void response = restTemplate.exchange(baseUrl + "panels/reduce/" + panelId, HttpMethod.GET, null, void.class).getBody();
     }
 
     public String getUserId() {

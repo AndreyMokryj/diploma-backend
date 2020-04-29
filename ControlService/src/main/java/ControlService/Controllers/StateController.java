@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController    // This means that this class is a Controller
+@RestController
 @RequestMapping(path="/states")
 @Component
 public class StateController {
@@ -38,7 +38,6 @@ public class StateController {
         try {
             Optional<StateE> state1 = stateRepository.findByParams(
                     state.getPanelId(),
-//                    direction.getPower(),
                     state.getAzimuth(),
                     state.getAltitude()
                 );
