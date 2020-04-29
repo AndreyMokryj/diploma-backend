@@ -68,4 +68,15 @@ public class StateController {
         state.setAzMinus(state.getAzMinus() + previousVO.getAzMinus());
         stateRepository.save(state);
     }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/change/")
+    public void changeState(@RequestBody StateVO stateVO) {
+        StateE state = getById(stateVO.getId());
+        state.setAltPlus(stateVO.getAltPlus());
+        state.setAltMinus(stateVO.getAltMinus());
+        state.setAzPlus(stateVO.getAzPlus());
+        state.setAzMinus(stateVO.getAzMinus());
+        stateRepository.save(state);
+    }
 }

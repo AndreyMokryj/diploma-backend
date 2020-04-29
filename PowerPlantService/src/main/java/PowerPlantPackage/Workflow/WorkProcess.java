@@ -16,7 +16,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 0;
+        index = 150;
     }
 
     public static WorkProcess getInstance(){
@@ -43,15 +43,25 @@ public class WorkProcess {
                 PanelVO panel = PanelVO.fromMap((Map) object);
                 double power = getPower(panel);
                 if (power >= 10){
+//                    preparePanel(panel);
                     findSun(panel);
                 }
                 else {
                     System.out.println("No sun found");
                 }
             }
-            index++;
+            index += 2;
             System.out.println("Task executed on " + new Date());
         }
+    }
+
+    public void prepareState(StateVO state) {
+        state.setAzPlus(0.1);
+        state.setAzMinus(0);
+        state.setAltPlus(0);
+        state.setAltMinus(0);
+
+        updateState(state);
     }
 
     public void findSun(PanelVO panel) {
@@ -60,6 +70,10 @@ public class WorkProcess {
         double altPlus = 0;
         double altMinus = 0;
 
+        StateVO state = getState(panel);
+        prepareState(state);
+
+        int iterator = 0;
         while (azPlus >= 0 || azMinus >= 0 || altPlus >= 0 || altMinus >= 0) {
             double prevPower = getPower(panel);
             Random random = new Random();
@@ -171,9 +185,12 @@ public class WorkProcess {
             sendUpdate(previousVO);
             sendUpdate(currentVO);
             updatePanel(panel);
+
+            iterator++;
         }
 
         System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude: " + panel.getAltitude() + "; index: " + index + "; power: " + getPower(panel));
+        System.out.println("Iterations: " + iterator);
     }
 
     public double getPower(PanelVO panel){
@@ -204,6 +221,10 @@ public class WorkProcess {
 
     public void updatePanel(PanelVO panelVO){
         Void response = restTemplate.postForObject(baseUrl + "panels/" + panelVO.getId(), panelVO, void.class);
+    }
+
+    public void updateState(StateVO stateVO){
+        Void response = restTemplate.postForObject(baseUrl + "states/change/", stateVO, void.class);
     }
 
     public String getUserId() {
