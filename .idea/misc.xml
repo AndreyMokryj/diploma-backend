@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/ControlService/pom.xml" />
         <option value="$PROJECT_DIR$/PowerPlantService/pom.xml" />
         <option value="$PROJECT_DIR$/SunService1/pom.xml" />
+        <option value="$PROJECT_DIR$/GridService/pom.xml" />
       </list>
     </option>
   </component>
