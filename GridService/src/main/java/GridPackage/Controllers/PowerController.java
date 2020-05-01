@@ -13,12 +13,11 @@ public class PowerController {
     private double nominalPower = 280;
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="/get/")
+    @GetMapping(path="/coef/")
     public @ResponseBody
     double getPower() {
         Random random = new Random();
-        double voltage = random.nextInt(318) / 10.0;
-        double power = nominalPower;
-        return power;
+        double coef = (random.nextInt(5) + 5) / 10.0;
+        return coef;
     }
 }
