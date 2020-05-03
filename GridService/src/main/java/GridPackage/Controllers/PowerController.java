@@ -13,6 +13,18 @@ public class PowerController {
     private double nominalPower = 280;
 
     @CrossOrigin(origins = "*")
+    @GetMapping(path="/status/")
+    public @ResponseBody
+    int getWorkStatus() {
+        Random random = new Random();
+        int n = (random.nextInt(20));
+        if(n == 10){
+            return 0;
+        }
+        return 1;
+    }
+
+    @CrossOrigin(origins = "*")
     @GetMapping(path="/coef/")
     public @ResponseBody
     double getPower() {
