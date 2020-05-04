@@ -182,6 +182,8 @@ public class WorkProcess {
             iterator++;
         }
 
+        updateLogs(panel);
+
         System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude: " + panel.getAltitude() + "; index: " + index + "; power: " + getPower(panel));
         System.out.println("Iterations: " + iterator);
     }
@@ -223,10 +225,9 @@ public class WorkProcess {
         Void response = restTemplate.exchange(baseUrl + "panels/reduce/" + panelId, HttpMethod.GET, null, void.class).getBody();
     }
 
-//    public int getGridStatus(){
-//        int response = restTemplate.exchange(gridUrl, HttpMethod.GET, null, int.class).getBody();
-//        return response;
-//    }
+    public void updateLogs(PanelVO panelVO){
+
+    }
 
     public String getUserId() {
         return userId;

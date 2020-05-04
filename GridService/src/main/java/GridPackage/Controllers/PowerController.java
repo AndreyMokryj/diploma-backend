@@ -19,7 +19,7 @@ public class PowerController {
         Random random = new Random();
         int n = (random.nextInt(20));
         if(n == 10){
-            return -1;
+            return 0;
         }
         return 1;
     }
