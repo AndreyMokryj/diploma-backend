@@ -32,4 +32,12 @@ public class SunController {
         double coef = Math.cos(daz * Math.PI / 180.0) * Math.cos(dalt * Math.PI / 180.0);
         return coef;
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/datetime/{index}")
+    public @ResponseBody
+    String getDateTime(@PathVariable int index) {
+        return SunCoordinatesList.getKey(index);
+    }
+
 }

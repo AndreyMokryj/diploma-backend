@@ -1,9 +1,6 @@
 package PowerPlantPackage.Workflow;
 
-import PowerPlantPackage.Model.Coordinates;
-import PowerPlantPackage.Model.PanelVO;
-import PowerPlantPackage.Model.PreviousVO;
-import PowerPlantPackage.Model.StateVO;
+import PowerPlantPackage.Model.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,6 +25,7 @@ public class WorkProcess {
 
     public final String baseUrl = "http://localhost:4444/";
     public final String sunUrl = "http://localhost:4441/sun/power-coef/";
+    public final String dateTimeUrl = "http://localhost:4441/sun/datetime/";
     public final String gridUrl = "http://localhost:4442/power/status/";
 
 
@@ -226,7 +224,31 @@ public class WorkProcess {
     }
 
     public void updateLogs(PanelVO panelVO){
+        LogVO logVO = new LogVO();
+        logVO.setUserId(userId);
+        logVO.setPanelId(panelVO.getId());
+        String dateTime = restTemplate.exchange(dateTimeUrl, HttpMethod.GET, null, String.class).getBody();
+        logVO.setDateTime(dateTime);
+        logVO.setProduced(getPower(panelVO) * 60 * 10);
 
+        AccumulatorVO accumulator = (AccumulatorVO) restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Object.class).getBody();
+        if (accumulator.getGridStatus() == 1){
+            double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
+            double additionalEnergy = Math.max(accumulator.getEnergy(), maxEnergyGiven);
+            logVO.setGiven(logVO.getProduced() + additionalEnergy);
+            accumulator.setEnergy(accumulator.getEnergy() - additionalEnergy);
+        }
+        else {
+            logVO.setGiven(0);
+            accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
+        }
+
+        updateAccumulator(accumulator);
+        restTemplate.postForObject(baseUrl + "logs/", logVO, void.class);
+    }
+
+    private void updateAccumulator(AccumulatorVO accumulatorVO) {
+        Void response = restTemplate.postForObject(baseUrl + "accumulators/" + userId, accumulatorVO, void.class);
     }
 
     public String getUserId() {
