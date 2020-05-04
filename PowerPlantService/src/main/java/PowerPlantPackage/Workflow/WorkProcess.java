@@ -227,14 +227,14 @@ public class WorkProcess {
         LogVO logVO = new LogVO();
         logVO.setUserId(userId);
         logVO.setPanelId(panelVO.getId());
-        String dateTime = restTemplate.exchange(dateTimeUrl, HttpMethod.GET, null, String.class).getBody();
+        String dateTime = restTemplate.exchange(dateTimeUrl + index, HttpMethod.GET, null, String.class).getBody();
         logVO.setDateTime(dateTime);
         logVO.setProduced(getPower(panelVO) * 60 * 10);
 
-        AccumulatorVO accumulator = (AccumulatorVO) restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Object.class).getBody();
+        AccumulatorVO accumulator = AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody());
         if (accumulator.getGridStatus() == 1){
             double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
-            double additionalEnergy = Math.max(accumulator.getEnergy(), maxEnergyGiven);
+            double additionalEnergy = Math.min(accumulator.getEnergy(), maxEnergyGiven);
             logVO.setGiven(logVO.getProduced() + additionalEnergy);
             accumulator.setEnergy(accumulator.getEnergy() - additionalEnergy);
         }
