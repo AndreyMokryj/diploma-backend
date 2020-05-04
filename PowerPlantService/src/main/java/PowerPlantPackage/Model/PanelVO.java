@@ -10,6 +10,7 @@ public class PanelVO {
     private String userId;
     private int azimuth;
     private int altitude;
+    private int connected;
 
     public static PanelVO fromMap(Map map){
         PanelVO panelVO = new PanelVO();
@@ -20,6 +21,7 @@ public class PanelVO {
         panelVO.setUserId((String) map.get("userId"));
         panelVO.setAzimuth((int) map.get("azimuth"));
         panelVO.setAltitude((int) map.get("altitude"));
+        panelVO.setConnected((int) map.get("connected"));
         return panelVO;
     }
 
@@ -79,5 +81,13 @@ public class PanelVO {
 
     public void setAltitude(int altitude) {
         this.altitude = altitude;
+    }
+
+    public int getConnected() {
+        return connected;
+    }
+
+    public void setConnected(int connected) {
+        this.connected = connected;
     }
 }

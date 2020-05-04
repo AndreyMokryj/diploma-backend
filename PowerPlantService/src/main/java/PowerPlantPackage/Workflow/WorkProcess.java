@@ -28,6 +28,7 @@ public class WorkProcess {
 
     public final String baseUrl = "http://localhost:4444/";
     public final String sunUrl = "http://localhost:4441/sun/power-coef/";
+    public final String gridUrl = "http://localhost:4442/power/status/";
 
 
     public List<Object> panels;
@@ -41,13 +42,17 @@ public class WorkProcess {
             panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
             for (Object object : panels){
                 PanelVO panel = PanelVO.fromMap((Map) object);
-                double power = getPower(panel);
-                if (power >= 10){
-                    preparePanel(panel);
-                    findSun(panel);
+                if(panel.getConnected() == 1) {
+                    double power = getPower(panel);
+                    if (power >= 10) {
+                        preparePanel(panel);
+                        findSun(panel);
+                    } else {
+                        System.out.println("No sun found");
+                    }
                 }
                 else {
-                    System.out.println("No sun found");
+                    System.out.println("Panel " + panel.getName() + " is disconnected");
                 }
             }
             index += 2;
@@ -191,7 +196,6 @@ public class WorkProcess {
             index = 0;
         }
         return coef * panel.getNominalPower();
-
     }
 
     public StateVO getState(PanelVO panel){
@@ -218,6 +222,11 @@ public class WorkProcess {
     public void reduceForPanel(String panelId){
         Void response = restTemplate.exchange(baseUrl + "panels/reduce/" + panelId, HttpMethod.GET, null, void.class).getBody();
     }
+
+//    public int getGridStatus(){
+//        int response = restTemplate.exchange(gridUrl, HttpMethod.GET, null, int.class).getBody();
+//        return response;
+//    }
 
     public String getUserId() {
         return userId;

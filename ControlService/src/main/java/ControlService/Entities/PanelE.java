@@ -25,6 +25,7 @@ public class PanelE {
 
     private int azimuth;
     private int altitude;
+    private int connected;
 
 
     public static PanelE fromVO(PanelVO panelVO){
@@ -36,6 +37,7 @@ public class PanelE {
         panel.setUserId(panelVO.getUserId());
         panel.setAzimuth(panelVO.getAzimuth());
         panel.setAltitude(panelVO.getAltitude());
+        panel.setConnected(panelVO.getConnected());
         return panel;
     }
 
@@ -93,5 +95,13 @@ public class PanelE {
 
     public void setAltitude(int altitude) {
         this.altitude = altitude;
+    }
+
+    public int getConnected() {
+        return connected;
+    }
+
+    public void setConnected(int connected) {
+        this.connected = connected;
     }
 }

@@ -8,6 +8,7 @@ public class PanelVO {
     private String userId;
     private int azimuth;
     private int altitude;
+    private int connected;
 
     public String getId() {
         return id;
@@ -64,5 +65,13 @@ public class PanelVO {
 
     public void setAltitude(int altitude) {
         this.altitude = altitude;
+    }
+
+    public int getConnected() {
+        return connected;
+    }
+
+    public void setConnected(int connected) {
+        this.connected = connected;
     }
 }

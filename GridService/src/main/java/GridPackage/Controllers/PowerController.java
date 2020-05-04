@@ -19,17 +19,17 @@ public class PowerController {
         Random random = new Random();
         int n = (random.nextInt(20));
         if(n == 10){
-            return 0;
+            return -1;
         }
         return 1;
     }
 
-    @CrossOrigin(origins = "*")
-    @GetMapping(path="/coef/")
-    public @ResponseBody
-    double getPower() {
-        Random random = new Random();
-        double coef = (random.nextInt(5) + 5) / 10.0;
-        return coef;
-    }
+//    @CrossOrigin(origins = "*")
+//    @GetMapping(path="/coef/")
+//    public @ResponseBody
+//    double getPower() {
+//        Random random = new Random();
+//        double coef = (random.nextInt(5) + 5) / 10.0;
+//        return coef;
+//    }
 }
