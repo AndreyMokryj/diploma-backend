@@ -1,5 +1,7 @@
 package ControlService.Entities;
 
+import ControlService.vo.LogVO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,6 +21,20 @@ public class TodayLogE {
 
     private double produced;
     private double given;
+
+    public static TodayLogE fromVO(LogVO logVO){
+        TodayLogE todayLog = new TodayLogE();
+        todayLog.setId(logVO.getId());
+        todayLog.setUserId(logVO.getUserId());
+        todayLog.setPanelId(logVO.getPanelId());
+        todayLog.setProduced(logVO.getProduced());
+        todayLog.setGiven(logVO.getGiven());
+
+        String time = logVO.getDateTime().substring(11, 13) + ":00:00";
+        todayLog.setTime(time);
+
+        return todayLog;
+    }
 
     public String getId() {
         return id;
