@@ -13,7 +13,7 @@ public class WorkProcess {
         panels = new ArrayList<Object>();
         restTemplate = new RestTemplate();
         userId = null;
-        index = 150;
+        index = 50;
     }
 
     public static WorkProcess getInstance(){
@@ -46,6 +46,7 @@ public class WorkProcess {
                         preparePanel(panel);
                         findSun(panel);
                     } else {
+                        turnPanelEast(panel);
                         System.out.println("No sun found");
                     }
                 }
@@ -55,6 +56,14 @@ public class WorkProcess {
             }
             index += 2;
             System.out.println("Task executed on " + new Date());
+        }
+    }
+
+    private void turnPanelEast(PanelVO panel) {
+        if(panel.getAzimuth() != 90 && panel.getAltitude() != 10){
+            panel.setAzimuth(90);
+            panel.setAltitude(10);
+            updatePanel(panel);
         }
     }
 
