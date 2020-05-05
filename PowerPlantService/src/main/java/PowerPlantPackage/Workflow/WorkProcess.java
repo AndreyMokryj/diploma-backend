@@ -244,7 +244,7 @@ public class WorkProcess {
         }
 
         updateAccumulator(accumulator);
-        restTemplate.postForObject(baseUrl + "logs/", logVO, void.class);
+        restTemplate.postForObject(baseUrl + "logs/update/", logVO, void.class);
     }
 
     private void updateAccumulator(AccumulatorVO accumulatorVO) {
