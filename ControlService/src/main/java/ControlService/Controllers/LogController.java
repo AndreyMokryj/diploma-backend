@@ -60,6 +60,18 @@ public class LogController {
     @PostMapping(path="/update/")
     public @ResponseBody
     void updateLogs(@RequestBody LogVO logVO) {
+        HistoryLogE historyLog = getHistoryLog(logVO);
+        historyLog.setProduced(historyLog.getProduced() + logVO.getProduced());
+        historyLog.setGiven(historyLog.getGiven() + logVO.getGiven());
+        historyLogRepository.save(historyLog);
 
+        if(logVO.getDateTime().contains("00:00:00")){
+            todayLogRepository.deleteByPanelId(logVO.getPanelId());
+        }
+
+        TodayLogE todayLog = getTodayLog(logVO);
+        todayLog.setProduced(todayLog.getProduced() + logVO.getProduced());
+        todayLog.setGiven(todayLog.getGiven() + logVO.getGiven());
+        todayLogRepository.save(todayLog);
     }
 }

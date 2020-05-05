@@ -28,8 +28,8 @@ public class HistoryLogE {
         historyLog.setId(logVO.getId());
         historyLog.setUserId(logVO.getUserId());
         historyLog.setPanelId(logVO.getPanelId());
-        historyLog.setProduced(logVO.getProduced());
-        historyLog.setGiven(logVO.getGiven());
+//        historyLog.setProduced(logVO.getProduced());
+//        historyLog.setGiven(logVO.getGiven());
 
         String dateTime = logVO.getDateTime().substring(0, 10);
         historyLog.setDateTime(dateTime);

@@ -27,8 +27,8 @@ public class TodayLogE {
         todayLog.setId(logVO.getId());
         todayLog.setUserId(logVO.getUserId());
         todayLog.setPanelId(logVO.getPanelId());
-        todayLog.setProduced(logVO.getProduced());
-        todayLog.setGiven(logVO.getGiven());
+//        todayLog.setProduced(logVO.getProduced());
+//        todayLog.setGiven(logVO.getGiven());
 
         String time = logVO.getDateTime().substring(11, 13) + ":00:00";
         todayLog.setTime(time);
