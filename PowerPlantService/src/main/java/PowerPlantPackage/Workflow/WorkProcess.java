@@ -63,6 +63,7 @@ public class WorkProcess {
         if(panel.getAzimuth() != 90 && panel.getAltitude() != 10){
             panel.setAzimuth(90);
             panel.setAltitude(10);
+            reduceForPanel(panel.getId());
             updatePanel(panel);
         }
     }
