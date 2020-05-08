@@ -29,30 +29,35 @@ public class WorkProcess {
     public final String gridUrl = "http://localhost:4442/power/status/";
 
 
-    public List<Object> panels;
+    private List<Object> panels;
     private RestTemplate restTemplate;
     private String userId;
+    private AccumulatorVO accumulator;
 
     private int index;
 
     public void execute(){
         if(!(userId == null)) {
-            panels = (List) (restTemplate.exchange( baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
-            for (Object object : panels){
-                PanelVO panel = PanelVO.fromMap((Map) object);
-                if(panel.getConnected() == 1) {
-                    double power = getPower(panel);
-                    if (power >= 10) {
-                        preparePanel(panel);
-                        findSun(panel);
+            accumulator = AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody());
+            if(accumulator.getStationConnection() == 1) {
+                panels = (List) (restTemplate.exchange(baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
+                for (Object object : panels) {
+                    PanelVO panel = PanelVO.fromMap((Map) object);
+                    if (panel.getConnected() == 1) {
+                        double power = getPower(panel);
+                        if (power >= 10) {
+                            preparePanel(panel);
+                            findSun(panel);
+                        } else {
+                            turnPanelEast(panel);
+                            System.out.println("No sun found");
+                        }
                     } else {
-                        turnPanelEast(panel);
-                        System.out.println("No sun found");
+                        System.out.println("Panel " + panel.getName() + " is disconnected");
                     }
                 }
-                else {
-                    System.out.println("Panel " + panel.getName() + " is disconnected");
-                }
+            } else {
+                System.out.println("Station is disconnected");
             }
             index += 2;
             System.out.println("Task executed on " + new Date());
@@ -241,8 +246,7 @@ public class WorkProcess {
         logVO.setDateTime(dateTime);
         logVO.setProduced(getPower(panelVO) * 60 * 10);
 
-        AccumulatorVO accumulator = AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody());
-        if (accumulator.getGridStatus() == 1){
+        if (accumulator.getGridConnection() == 1){
             double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
             double additionalEnergy = Math.min(accumulator.getEnergy(), maxEnergyGiven);
             logVO.setGiven(logVO.getProduced() + additionalEnergy);

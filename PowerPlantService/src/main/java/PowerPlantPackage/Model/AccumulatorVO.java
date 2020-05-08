@@ -6,14 +6,16 @@ public class AccumulatorVO {
     private String id;
     private int maxPower;
     private double energy;
-    private int gridStatus;
+    private int gridConnection;
+    private int stationConnection;
 
     public static AccumulatorVO fromMap(Map map){
         AccumulatorVO accumulator = new AccumulatorVO();
         accumulator.setId((String) map.get("id"));
         accumulator.setMaxPower((int) map.get("maxPower"));
         accumulator.setEnergy((double) map.get("energy"));
-        accumulator.setGridStatus((int) map.get("gridStatus"));
+        accumulator.setGridConnection((int) map.get("gridConnection"));
+        accumulator.setStationConnection((int) map.get("stationConnection"));
         return accumulator;
     }
 
@@ -41,11 +43,19 @@ public class AccumulatorVO {
         this.energy = energy;
     }
 
-    public int getGridStatus() {
-        return gridStatus;
+    public int getGridConnection() {
+        return gridConnection;
     }
 
-    public void setGridStatus(int gridStatus) {
-        this.gridStatus = gridStatus;
+    public void setGridConnection(int gridConnection) {
+        this.gridConnection = gridConnection;
+    }
+
+    public int getStationConnection() {
+        return stationConnection;
+    }
+
+    public void setStationConnection(int stationConnection) {
+        this.stationConnection = stationConnection;
     }
 }

@@ -62,18 +62,10 @@ public class PanelController {
         List<StateE> states = (List<StateE>) stateRepository.findByPanelId(panelId);
         PanelE panel = getById(panelId);
         for (StateE state : states) {
-//            if(state.getAltitude() == panel.getAltitude() && state.getAzimuth() == panel.getAzimuth()){
-//                state.setAzPlus(0.1);
-//                state.setAzMinus(0);
-//                state.setAltPlus(0);
-//                state.setAltMinus(0);
-//            }
-//            else {
-                state.setAzPlus(state.getAzPlus() / k);
-                state.setAzMinus(state.getAzMinus() / k);
-                state.setAltPlus(state.getAltPlus() / k);
-                state.setAltMinus(state.getAltMinus() / k);
-//            }
+            state.setAzPlus(state.getAzPlus() / k);
+            state.setAzMinus(state.getAzMinus() / k);
+            state.setAltPlus(state.getAltPlus() / k);
+            state.setAltMinus(state.getAltMinus() / k);
         }
 
         stateRepository.saveAll(states);
@@ -112,7 +104,6 @@ public class PanelController {
         currentState.setAzMinus(0);
         currentState.setAltPlus(0);
         currentState.setAltMinus(0);
-
         stateRepository.save(currentState);
 
         stateVO.setAzimuth((stateVO.getAzimuth() + 1) % 360);

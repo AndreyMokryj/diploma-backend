@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController    // This means that this class is a Controller
+@RestController
 @RequestMapping(path="/users")
 @Component
 public class UserController {
@@ -52,6 +52,5 @@ public class UserController {
         catch (Exception e) {
             return null;
         }
-
     }
 }

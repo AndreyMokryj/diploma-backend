@@ -4,7 +4,8 @@ public class AccumulatorVO {
     private String id;
     private int maxPower;
     private double energy;
-    private int gridStatus;
+    private int gridConnection;
+    private int stationConnection;
 
     public String getId() {
         return id;
@@ -31,11 +32,19 @@ public class AccumulatorVO {
         this.energy = energy;
     }
 
-    public int getGridStatus() {
-        return gridStatus;
+    public int getGridConnection() {
+        return gridConnection;
     }
 
-    public void setGridStatus(int gridStatus) {
-        this.gridStatus = gridStatus;
+    public void setGridConnection(int gridConnection) {
+        this.gridConnection = gridConnection;
+    }
+
+    public int getStationConnection() {
+        return stationConnection;
+    }
+
+    public void setStationConnection(int stationConnection) {
+        this.stationConnection = stationConnection;
     }
 }

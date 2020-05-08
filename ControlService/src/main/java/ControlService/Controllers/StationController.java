@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-@RestController    // This means that this class is a Controller
+@RestController
 @RequestMapping(path="/connect")
 @Component
 public class StationController {
@@ -17,14 +17,5 @@ public class StationController {
     public @ResponseBody
     String getUserId(@RequestBody String url) {
         return userRepository.findByUrl(url);
-//        return userRepository.findByUrl(request.getURI().getHost());
     }
-
-//    @CrossOrigin(origins = "*")
-//    @GetMapping(path="/")
-//    public String getUserIdg(HttpServletRequest request) {
-//        String url = request.getHeader("X-FORWARDED-FOR");
-//        return userRepository.findByUrl(url);
-////        return userRepository.findByUrl(request.getURI().getHost());
-//    }
 }

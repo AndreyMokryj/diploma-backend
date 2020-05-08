@@ -16,15 +16,19 @@ public class AccumulatorE {
 
     private double energy;
 
-    @Column(name = "grid_status")
-    private int gridStatus;
+    @Column(name = "grid_connection")
+    private int gridConnection;
+
+    @Column(name = "station_connection")
+    private int stationConnection;
 
     public static AccumulatorE fromVO(AccumulatorVO accumulatorVO){
         AccumulatorE accumulator = new AccumulatorE();
         accumulator.setId(accumulatorVO.getId());
         accumulator.setMaxPower(accumulatorVO.getMaxPower());
         accumulator.setEnergy(accumulatorVO.getEnergy());
-        accumulator.setGridStatus(accumulatorVO.getGridStatus());
+        accumulator.setGridConnection(accumulatorVO.getGridConnection());
+        accumulator.setStationConnection(accumulatorVO.getStationConnection());
         return accumulator;
     }
 
@@ -52,11 +56,19 @@ public class AccumulatorE {
         this.energy = energy;
     }
 
-    public int getGridStatus() {
-        return gridStatus;
+    public int getGridConnection() {
+        return gridConnection;
     }
 
-    public void setGridStatus(int gridStatus) {
-        this.gridStatus = gridStatus;
+    public void setGridConnection(int gridStatus) {
+        this.gridConnection = gridStatus;
+    }
+
+    public int getStationConnection() {
+        return stationConnection;
+    }
+
+    public void setStationConnection(int stationConnection) {
+        this.stationConnection = stationConnection;
     }
 }
