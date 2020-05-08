@@ -20,7 +20,7 @@ public class TodayProducedLogE {
     private String panelId;
 
     private double produced;
-    private double given;
+//    private double given;
 
     public static TodayProducedLogE fromVO(LogVO logVO){
         TodayProducedLogE todayLog = new TodayProducedLogE();
@@ -68,13 +68,13 @@ public class TodayProducedLogE {
         this.produced = produced;
     }
 
-    public double getGiven() {
-        return given;
-    }
-
-    public void setGiven(double given) {
-        this.given = given;
-    }
+//    public double getGiven() {
+//        return given;
+//    }
+//
+//    public void setGiven(double given) {
+//        this.given = given;
+//    }
 
     public String getTime() {
         return time;

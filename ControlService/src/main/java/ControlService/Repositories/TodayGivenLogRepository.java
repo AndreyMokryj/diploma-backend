@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 public interface TodayGivenLogRepository extends CrudRepository<TodayGivenLogE, String> {
-    @Query("SELECT tl FROM today_given_logs tl where tl.userId = :userId and tl.panelId = :panelId and tl.time = :time")
+    @Query("SELECT tl FROM today_given_logs tl where tl.userId = :userId and tl.time = :time")
     @Transactional
-    public Optional<TodayGivenLogE> findByParams(String userId, String panelId, String time);
+    public Optional<TodayGivenLogE> findByParams(String userId, String time);
 
-    @Query("DELETE FROM today_given_logs tl where tl.panelId = :panelId")
+    @Query("DELETE FROM today_given_logs tl where tl.userId = :userId")
     @Transactional
-    public void deleteByPanelId(String panelId);
+    public void deleteByUserId(String userId);
 }

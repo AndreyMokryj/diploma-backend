@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 public interface HistoryGivenLogRepository extends CrudRepository<HistoryGivenLogE, String> {
-    @Query("SELECT hl FROM history_given_logs hl where hl.userId = :userId and hl.panelId = :panelId and hl.dateTime = :dateTime")
+    @Query("SELECT hl FROM history_given_logs hl where hl.userId = :userId and hl.dateTime = :dateTime")
     @Transactional
-    public Optional<HistoryGivenLogE> findByParams(String userId, String panelId, String dateTime);
+    public Optional<HistoryGivenLogE> findByParams(String userId, String dateTime);
 }

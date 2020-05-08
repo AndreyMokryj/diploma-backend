@@ -16,17 +16,17 @@ public class TodayGivenLogE {
     @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "panel_id")
-    private String panelId;
-
-    private double produced;
+//    @Column(name = "panel_id")
+//    private String panelId;
+//
+//    private double produced;
     private double given;
 
     public static TodayGivenLogE fromVO(LogVO logVO){
         TodayGivenLogE todayLog = new TodayGivenLogE();
         todayLog.setId(logVO.getId());
         todayLog.setUserId(logVO.getUserId());
-        todayLog.setPanelId(logVO.getPanelId());
+//        todayLog.setPanelId(logVO.getPanelId());
 //        todayLog.setProduced(logVO.getProduced());
 //        todayLog.setGiven(logVO.getGiven());
 
@@ -52,21 +52,21 @@ public class TodayGivenLogE {
         this.userId = userId;
     }
 
-    public String getPanelId() {
-        return panelId;
-    }
-
-    public void setPanelId(String panelId) {
-        this.panelId = panelId;
-    }
-
-    public double getProduced() {
-        return produced;
-    }
-
-    public void setProduced(double produced) {
-        this.produced = produced;
-    }
+//    public String getPanelId() {
+//        return panelId;
+//    }
+//
+//    public void setPanelId(String panelId) {
+//        this.panelId = panelId;
+//    }
+//
+//    public double getProduced() {
+//        return produced;
+//    }
+//
+//    public void setProduced(double produced) {
+//        this.produced = produced;
+//    }
 
     public double getGiven() {
         return given;

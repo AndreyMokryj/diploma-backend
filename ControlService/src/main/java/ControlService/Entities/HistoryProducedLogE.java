@@ -21,7 +21,7 @@ public class HistoryProducedLogE {
     private String panelId;
 
     private double produced;
-    private double given;
+//    private double given;
 
     public static HistoryProducedLogE fromVO(LogVO logVO){
         HistoryProducedLogE historyLog = new HistoryProducedLogE();
@@ -77,11 +77,11 @@ public class HistoryProducedLogE {
         this.produced = produced;
     }
 
-    public double getGiven() {
-        return given;
-    }
-
-    public void setGiven(double given) {
-        this.given = given;
-    }
+//    public double getGiven() {
+//        return given;
+//    }
+//
+//    public void setGiven(double given) {
+//        this.given = given;
+//    }
 }
