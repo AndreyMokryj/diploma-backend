@@ -6,12 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "today_logs")
-public class TodayLogE {
+@Entity(name = "history_given_logs")
+public class HistoryGivenLogE {
     @Id
     private String id;
 
-    private String time;
+    @Column(name = "date_time")
+    private String dateTime;
 
     @Column(name = "user_id")
     private String userId;
@@ -22,18 +23,18 @@ public class TodayLogE {
     private double produced;
     private double given;
 
-    public static TodayLogE fromVO(LogVO logVO){
-        TodayLogE todayLog = new TodayLogE();
-        todayLog.setId(logVO.getId());
-        todayLog.setUserId(logVO.getUserId());
-        todayLog.setPanelId(logVO.getPanelId());
-//        todayLog.setProduced(logVO.getProduced());
-//        todayLog.setGiven(logVO.getGiven());
+    public static HistoryGivenLogE fromVO(LogVO logVO){
+        HistoryGivenLogE historyLog = new HistoryGivenLogE();
+        historyLog.setId(logVO.getId());
+        historyLog.setUserId(logVO.getUserId());
+        historyLog.setPanelId(logVO.getPanelId());
+//        historyLog.setProduced(logVO.getProduced());
+//        historyLog.setGiven(logVO.getGiven());
 
-        String time = logVO.getDateTime().substring(11, 13) + ":00:00";
-        todayLog.setTime(time);
+        String dateTime = logVO.getDateTime().substring(0, 10);
+        historyLog.setDateTime(dateTime);
 
-        return todayLog;
+        return historyLog;
     }
 
     public String getId() {
@@ -60,6 +61,14 @@ public class TodayLogE {
         this.panelId = panelId;
     }
 
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public double getProduced() {
         return produced;
     }
@@ -74,13 +83,5 @@ public class TodayLogE {
 
     public void setGiven(double given) {
         this.given = given;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 }

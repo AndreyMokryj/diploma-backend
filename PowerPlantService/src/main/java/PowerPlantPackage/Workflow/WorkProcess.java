@@ -48,6 +48,7 @@ public class WorkProcess {
                         if (power >= 10) {
                             preparePanel(panel);
                             findSun(panel);
+                            updateProducedLogs(panel);
                         } else {
                             turnPanelEast(panel);
                             System.out.println("No sun found");
@@ -59,6 +60,7 @@ public class WorkProcess {
             } else {
                 System.out.println("Station is disconnected");
             }
+            updateGivenLogs();
             index += 2;
             System.out.println("Task executed on " + new Date());
         }
@@ -195,7 +197,7 @@ public class WorkProcess {
             iterator++;
         }
 
-        updateLogs(panel);
+//        updateLogs(panel);
 
         System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude: " + panel.getAltitude() + "; index: " + index + "; power: " + getPower(panel));
         System.out.println("Iterations: " + iterator);
@@ -238,7 +240,7 @@ public class WorkProcess {
         Void response = restTemplate.exchange(baseUrl + "panels/reduce/" + panelId, HttpMethod.GET, null, void.class).getBody();
     }
 
-    public void updateLogs(PanelVO panelVO){
+    public void updateProducedLogs(PanelVO panelVO){
         LogVO logVO = new LogVO();
         logVO.setUserId(userId);
         logVO.setPanelId(panelVO.getId());
@@ -246,15 +248,39 @@ public class WorkProcess {
         logVO.setDateTime(dateTime);
         logVO.setProduced(getPower(panelVO) * 60 * 10);
 
+//        if (accumulator.getGridConnection() == 1){
+//            double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
+//            double additionalEnergy = Math.min(accumulator.getEnergy(), maxEnergyGiven);
+////            logVO.setGiven(logVO.getProduced() + additionalEnergy);
+//            accumulator.setEnergy(accumulator.getEnergy() - additionalEnergy);
+//        }
+//        else {
+////            logVO.setGiven(0);
+//        if (accumulator.getGridConnection() != 1){
+        accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
+//        }
+
+        updateAccumulator(accumulator);
+        restTemplate.postForObject(baseUrl + "logs/update/", logVO, void.class);
+    }
+
+    public void updateGivenLogs(){
+        LogVO logVO = new LogVO();
+        logVO.setUserId(userId);
+//        logVO.setPanelId(panelVO.getId());
+        String dateTime = restTemplate.exchange(dateTimeUrl + index, HttpMethod.GET, null, String.class).getBody();
+        logVO.setDateTime(dateTime);
+//        logVO.setProduced(0);
+
         if (accumulator.getGridConnection() == 1){
             double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
             double additionalEnergy = Math.min(accumulator.getEnergy(), maxEnergyGiven);
-            logVO.setGiven(logVO.getProduced() + additionalEnergy);
+            logVO.setGiven(additionalEnergy);
             accumulator.setEnergy(accumulator.getEnergy() - additionalEnergy);
         }
         else {
             logVO.setGiven(0);
-            accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
+//            accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
         }
 
         updateAccumulator(accumulator);

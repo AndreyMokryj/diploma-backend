@@ -1,9 +1,9 @@
 package ControlService.Controllers;
 
-import ControlService.Entities.HistoryLogE;
-import ControlService.Entities.TodayLogE;
-import ControlService.Repositories.HistoryLogRepository;
-import ControlService.Repositories.TodayLogRepository;
+import ControlService.Entities.HistoryProducedLogE;
+import ControlService.Entities.TodayProducedLogE;
+import ControlService.Repositories.HistoryProducedLogRepository;
+import ControlService.Repositories.TodayProducedLogRepository;
 import ControlService.vo.LogVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,15 +17,15 @@ import java.util.UUID;
 @Component
 public class LogController {
     @Autowired
-    private HistoryLogRepository historyLogRepository;
+    private HistoryProducedLogRepository historyProducedLogRepository;
 
     @Autowired
-    private TodayLogRepository todayLogRepository;
+    private TodayProducedLogRepository todayProducedLogRepository;
 
-    private HistoryLogE getHistoryLog(LogVO logVO) {
-        HistoryLogE historyLog = HistoryLogE.fromVO(logVO);
+    private HistoryProducedLogE getHistoryLog(LogVO logVO) {
+        HistoryProducedLogE historyLog = HistoryProducedLogE.fromVO(logVO);
         try {
-            Optional<HistoryLogE> historyLog1 = historyLogRepository.findByParams(
+            Optional<HistoryProducedLogE> historyLog1 = historyProducedLogRepository.findByParams(
                     historyLog.getUserId(),
                     historyLog.getPanelId(),
                     historyLog.getDateTime()
@@ -34,15 +34,15 @@ public class LogController {
         }
         catch (Exception ex){
             historyLog.setId(UUID.randomUUID().toString());
-            HistoryLogE saved = historyLogRepository.save(historyLog);
+            HistoryProducedLogE saved = historyProducedLogRepository.save(historyLog);
             return saved;
         }
     }
 
-    private TodayLogE getTodayLog(LogVO logVO) {
-        TodayLogE todayLog = TodayLogE.fromVO(logVO);
+    private TodayProducedLogE getTodayLog(LogVO logVO) {
+        TodayProducedLogE todayLog = TodayProducedLogE.fromVO(logVO);
         try {
-            Optional<TodayLogE> todayLog1 = todayLogRepository.findByParams(
+            Optional<TodayProducedLogE> todayLog1 = todayProducedLogRepository.findByParams(
                     todayLog.getUserId(),
                     todayLog.getPanelId(),
                     todayLog.getTime()
@@ -51,7 +51,7 @@ public class LogController {
         }
         catch (Exception ex){
             todayLog.setId(UUID.randomUUID().toString());
-            TodayLogE saved = todayLogRepository.save(todayLog);
+            TodayProducedLogE saved = todayProducedLogRepository.save(todayLog);
             return saved;
         }
     }
@@ -60,18 +60,18 @@ public class LogController {
     @PostMapping(path="/update/")
     public @ResponseBody
     void updateLogs(@RequestBody LogVO logVO) {
-        HistoryLogE historyLog = getHistoryLog(logVO);
+        HistoryProducedLogE historyLog = getHistoryLog(logVO);
         historyLog.setProduced(historyLog.getProduced() + logVO.getProduced());
         historyLog.setGiven(historyLog.getGiven() + logVO.getGiven());
-        historyLogRepository.save(historyLog);
+        historyProducedLogRepository.save(historyLog);
 
         if(logVO.getDateTime().contains("00:00:00")){
-            todayLogRepository.deleteByPanelId(logVO.getPanelId());
+            todayProducedLogRepository.deleteByPanelId(logVO.getPanelId());
         }
 
-        TodayLogE todayLog = getTodayLog(logVO);
+        TodayProducedLogE todayLog = getTodayLog(logVO);
         todayLog.setProduced(todayLog.getProduced() + logVO.getProduced());
         todayLog.setGiven(todayLog.getGiven() + logVO.getGiven());
-        todayLogRepository.save(todayLog);
+        todayProducedLogRepository.save(todayLog);
     }
 }

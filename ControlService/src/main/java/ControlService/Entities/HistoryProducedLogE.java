@@ -6,8 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "history_logs")
-public class HistoryLogE {
+@Entity(name = "history_produced_logs")
+public class HistoryProducedLogE {
     @Id
     private String id;
 
@@ -23,8 +23,8 @@ public class HistoryLogE {
     private double produced;
     private double given;
 
-    public static HistoryLogE fromVO(LogVO logVO){
-        HistoryLogE historyLog = new HistoryLogE();
+    public static HistoryProducedLogE fromVO(LogVO logVO){
+        HistoryProducedLogE historyLog = new HistoryProducedLogE();
         historyLog.setId(logVO.getId());
         historyLog.setUserId(logVO.getUserId());
         historyLog.setPanelId(logVO.getPanelId());
