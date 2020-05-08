@@ -87,7 +87,6 @@ public class LogController {
         try {
             Optional<TodayGivenLogE> todayLog1 = todayGivenLogRepository.findByParams(
                     todayLog.getUserId(),
-//                    todayLog.getPanelId(),
                     todayLog.getTime()
             );
             return todayLog1.get();
@@ -105,7 +104,6 @@ public class LogController {
     void updateLogs(@RequestBody LogVO logVO) {
         if (logVO.getPanelId() == null){
             HistoryGivenLogE historyLog = getHistoryGivenLog(logVO);
-//            historyLog.setProduced(historyLog.getProduced() + logVO.getProduced());
             historyLog.setGiven(historyLog.getGiven() + logVO.getGiven());
             historyGivenLogRepository.save(historyLog);
 
@@ -114,14 +112,12 @@ public class LogController {
             }
 
             TodayGivenLogE todayLog = getTodayGivenLog(logVO);
-//            todayLog.setProduced(todayLog.getProduced() + logVO.getProduced());
             todayLog.setGiven(todayLog.getGiven() + logVO.getGiven());
             todayGivenLogRepository.save(todayLog);
         }
         else {
             HistoryProducedLogE historyLog = getHistoryProducedLog(logVO);
             historyLog.setProduced(historyLog.getProduced() + logVO.getProduced());
-//            historyLog.setGiven(historyLog.getGiven() + logVO.getGiven());
             historyProducedLogRepository.save(historyLog);
 
             if(logVO.getDateTime().contains("00:00:00")){
@@ -130,7 +126,6 @@ public class LogController {
 
             TodayProducedLogE todayLog = getTodayProducedLog(logVO);
             todayLog.setProduced(todayLog.getProduced() + logVO.getProduced());
-//            todayLog.setGiven(todayLog.getGiven() + logVO.getGiven());
             todayProducedLogRepository.save(todayLog);
         }
     }

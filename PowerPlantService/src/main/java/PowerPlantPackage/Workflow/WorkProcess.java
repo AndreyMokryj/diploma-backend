@@ -197,8 +197,6 @@ public class WorkProcess {
             iterator++;
         }
 
-//        updateLogs(panel);
-
         System.out.println("Panel " + panel.getName() + ": final azimuth: " + panel.getAzimuth() + "; altitude: " + panel.getAltitude() + "; index: " + index + "; power: " + getPower(panel));
         System.out.println("Iterations: " + iterator);
     }
@@ -248,18 +246,7 @@ public class WorkProcess {
         logVO.setDateTime(dateTime);
         logVO.setProduced(getPower(panelVO) * 60 * 10);
 
-//        if (accumulator.getGridConnection() == 1){
-//            double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
-//            double additionalEnergy = Math.min(accumulator.getEnergy(), maxEnergyGiven);
-////            logVO.setGiven(logVO.getProduced() + additionalEnergy);
-//            accumulator.setEnergy(accumulator.getEnergy() - additionalEnergy);
-//        }
-//        else {
-////            logVO.setGiven(0);
-//        if (accumulator.getGridConnection() != 1){
         accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
-//        }
-
         updateAccumulator(accumulator);
         restTemplate.postForObject(baseUrl + "logs/update/", logVO, void.class);
     }
@@ -267,10 +254,8 @@ public class WorkProcess {
     public void updateGivenLogs(){
         LogVO logVO = new LogVO();
         logVO.setUserId(userId);
-//        logVO.setPanelId(panelVO.getId());
         String dateTime = restTemplate.exchange(dateTimeUrl + index, HttpMethod.GET, null, String.class).getBody();
         logVO.setDateTime(dateTime);
-//        logVO.setProduced(0);
 
         if (accumulator.getGridConnection() == 1){
             double maxEnergyGiven = accumulator.getMaxPower() * 60 * 10;
@@ -280,7 +265,6 @@ public class WorkProcess {
         }
         else {
             logVO.setGiven(0);
-//            accumulator.setEnergy(accumulator.getEnergy() + logVO.getProduced());
         }
 
         updateAccumulator(accumulator);

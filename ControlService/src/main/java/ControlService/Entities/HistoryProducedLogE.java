@@ -21,15 +21,12 @@ public class HistoryProducedLogE {
     private String panelId;
 
     private double produced;
-//    private double given;
 
     public static HistoryProducedLogE fromVO(LogVO logVO){
         HistoryProducedLogE historyLog = new HistoryProducedLogE();
         historyLog.setId(logVO.getId());
         historyLog.setUserId(logVO.getUserId());
         historyLog.setPanelId(logVO.getPanelId());
-//        historyLog.setProduced(logVO.getProduced());
-//        historyLog.setGiven(logVO.getGiven());
 
         String dateTime = logVO.getDateTime().substring(0, 10);
         historyLog.setDateTime(dateTime);
@@ -76,12 +73,4 @@ public class HistoryProducedLogE {
     public void setProduced(double produced) {
         this.produced = produced;
     }
-
-//    public double getGiven() {
-//        return given;
-//    }
-//
-//    public void setGiven(double given) {
-//        this.given = given;
-//    }
 }
