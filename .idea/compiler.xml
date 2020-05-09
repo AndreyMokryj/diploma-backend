@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="GridService" />
-        <module name="SunService" />
-        <module name="ControlService" />
         <module name="SunService1" />
+        <module name="GridService" />
+        <module name="DiscoveryService" />
+        <module name="ControlService" />
+        <module name="SunService" />
         <module name="PowerPlantService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ControlService" target="1.8" />
+      <module name="DiscoveryService" target="1.8" />
       <module name="GridService" target="1.8" />
       <module name="PowerPlantService" target="1.8" />
       <module name="SunService" target="1.8" />
@@ -24,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ControlService" options="-parameters" />
+      <module name="DiscoveryService" options="-parameters" />
       <module name="GridService" options="-parameters" />
       <module name="PowerPlantService" options="-parameters" />
       <module name="SunService" options="-parameters" />
