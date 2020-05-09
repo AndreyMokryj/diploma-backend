@@ -1,5 +1,6 @@
 package PowerPlantPackage.Workflow;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,12 @@ import java.net.UnknownHostException;
 
 @Component
 public class MyListener implements ApplicationListener<ServletWebServerInitializedEvent> {
+    @Value("${server.port}")
+    private String sp;
+
+    public String getSp(){
+        return sp;
+    }
 
     @Override
     public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
