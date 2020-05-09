@@ -15,4 +15,8 @@ public interface UserRepository extends CrudRepository<UserE, String> {
     @Query("SELECT u.id FROM users u where u.stationUrl = :url")
     @Transactional
     public String findByUrl(String url);
+
+    @Query("SELECT u.id FROM users u where u.stationId = :sid")
+    @Transactional
+    public String findBySID(String sid);
 }

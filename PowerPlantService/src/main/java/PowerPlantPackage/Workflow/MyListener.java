@@ -5,40 +5,33 @@ import org.springframework.boot.web.servlet.context.ServletWebServerInitializedE
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 @Component
 public class MyListener implements ApplicationListener<ServletWebServerInitializedEvent> {
-    @Value("${server.port}")
-    private String sp;
-
-    public String getSp(){
-        return sp;
-    }
+    @Value("${spring.application.name}")
+    private String serviceName;
 
     @Override
     public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
-        int port = event.getWebServer().getPort();
-        String host = "";
-        String url = "";
-
-        try {
-            host = InetAddress.getLocalHost().getHostAddress() ;
-        } catch (UnknownHostException e) {
-        }
-
-        if (port == 443){
-            url = "https://" + host + "/";
-        }
-        else {
-            url = "http://" + host + ":" + port + "/";
-        }
+//        int port = event.getWebServer().getPort();
+//        String host = "";
+//        String url = "";
+//
+//        try {
+//            host = InetAddress.getLocalHost().getHostAddress() ;
+//        } catch (UnknownHostException e) {
+//        }
+//
+//        if (port == 443){
+//            url = "https://" + host + "/";
+//        }
+//        else {
+//            url = "http://" + host + ":" + port + "/";
+//        }
 
         String userId = null;
         while (userId == null) {
             try {
-                userId = WorkProcess.getInstance().getRestTemplate().postForObject(WorkProcess.getInstance().baseUrl + "connect/", url, String.class);
+                userId = WorkProcess.getInstance().getRestTemplate().postForObject(WorkProcess.getInstance().baseUrl + "connect/", serviceName, String.class);
                 Thread.sleep(10000L);
             } catch (Exception e) {
             }

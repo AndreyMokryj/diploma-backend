@@ -18,6 +18,9 @@ public class UserE {
     @Column(name = "station_url")
     private String stationUrl;
 
+    @Column(name = "station_id")
+    private String stationId;
+
     public String getUsername() {
         return username;
     }
@@ -78,5 +81,13 @@ public class UserE {
 
     public void setStationUrl(String stationUrl) {
         this.stationUrl = stationUrl;
+    }
+
+    public String getStationId() {
+        return stationId;
+    }
+
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
     }
 }
