@@ -28,8 +28,6 @@ public class WorkProcess {
     public final String dateTimeUrl = "http://localhost:4441/sun/datetime/";
     public final String gridUrl = "http://localhost:4442/power/status/";
 
-
-//    private List<Object> panels;
     public List<PanelVO> panels;
     private RestTemplate restTemplate;
     private String userId;
@@ -39,12 +37,8 @@ public class WorkProcess {
 
     public void execute(){
         if(!(userId == null)) {
-//            accumulator = AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody());
             if(accumulator.getStationConnection() == 1) {
-//                panels = (List) (restTemplate.exchange(baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
                 for (PanelVO panel : panels) {
-//                for (Object object : panels) {
-//                    PanelVO panel = PanelVO.fromMap((Map) object);
                     if (panel.getConnected() == 1) {
                         double power = getPower(panel);
                         if (power >= 10) {
@@ -288,14 +282,6 @@ public class WorkProcess {
     public RestTemplate getRestTemplate(){
         return restTemplate;
     }
-
-//    public List<PanelVO> getPanels(){
-//        return panels;
-//    }
-//
-//    public void setPanels(List<PanelVO> panels){
-//        this.panels = panels;
-//    }
 
     public AccumulatorVO getAccumulator(){
         return accumulator;

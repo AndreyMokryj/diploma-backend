@@ -9,15 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/panels")
 @Component
 public class PanelController {
-//    @Autowired
-//    private PanelRepository panelRepository;
-//
     @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
     Iterable<PanelVO> getAll() {
         return WorkProcess.getInstance().panels;
-//        return WorkProcess.getInstance().getPanels();
     }
 //
 //    @CrossOrigin(origins = "*")
