@@ -1,6 +1,6 @@
 package PowerPlantPackage.Controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import PowerPlantPackage.Workflow.WorkProcess;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +11,12 @@ public class PanelController {
 //    @Autowired
 //    private PanelRepository panelRepository;
 //
-//    @CrossOrigin(origins = "*")
-//    @GetMapping(path="/")
-//    public @ResponseBody
-//    Iterable<PanelE> getAll() {
-//        return panelRepository.findAll();
-//    }
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/")
+    public @ResponseBody
+    Iterable<Object> getAll() {
+        return WorkProcess.getInstance().panels;
+    }
 //
 //    @CrossOrigin(origins = "*")
 //    @GetMapping(path="/{id}")

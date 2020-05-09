@@ -29,7 +29,7 @@ public class WorkProcess {
     public final String gridUrl = "http://localhost:4442/power/status/";
 
 
-    private List<Object> panels;
+    public List<Object> panels;
     private RestTemplate restTemplate;
     private String userId;
     private AccumulatorVO accumulator;

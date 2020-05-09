@@ -12,11 +12,11 @@ public interface UserRepository extends CrudRepository<UserE, String> {
     @Transactional
     public Optional<UserE> findByUN(String un);
 
-    @Query("SELECT u.id FROM users u where u.stationUrl = :url")
-    @Transactional
-    public String findByUrl(String url);
-
     @Query("SELECT u.id FROM users u where u.stationId = :sid")
     @Transactional
-    public String findBySID(String sid);
+    public String findIdBySID(String sid);
+
+    @Query("SELECT u.stationId FROM users u where u.id = :id")
+    @Transactional
+    public String findSID(String id);
 }

@@ -16,7 +16,6 @@ public class StationController {
     @PostMapping(path="/")
     public @ResponseBody
     String getUserId(@RequestBody String url) {
-//        return userRepository.findByUrl(url);
-        return userRepository.findBySID(url);
+        return userRepository.findIdBySID(url);
     }
 }
