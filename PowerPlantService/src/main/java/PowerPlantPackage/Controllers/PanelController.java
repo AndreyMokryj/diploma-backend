@@ -1,5 +1,6 @@
 package PowerPlantPackage.Controllers;
 
+import PowerPlantPackage.Model.PanelVO;
 import PowerPlantPackage.Workflow.WorkProcess;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,9 @@ public class PanelController {
     @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
-    Iterable<Object> getAll() {
+    Iterable<PanelVO> getAll() {
         return WorkProcess.getInstance().panels;
+//        return WorkProcess.getInstance().getPanels();
     }
 //
 //    @CrossOrigin(origins = "*")

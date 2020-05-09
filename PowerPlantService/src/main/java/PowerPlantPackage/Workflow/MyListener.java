@@ -1,9 +1,16 @@
 package PowerPlantPackage.Workflow;
 
+import PowerPlantPackage.Model.AccumulatorVO;
+import PowerPlantPackage.Model.PanelVO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class MyListener implements ApplicationListener<ServletWebServerInitializedEvent> {
@@ -12,30 +19,23 @@ public class MyListener implements ApplicationListener<ServletWebServerInitializ
 
     @Override
     public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
-//        int port = event.getWebServer().getPort();
-//        String host = "";
-//        String url = "";
-//
-//        try {
-//            host = InetAddress.getLocalHost().getHostAddress() ;
-//        } catch (UnknownHostException e) {
-//        }
-//
-//        if (port == 443){
-//            url = "https://" + host + "/";
-//        }
-//        else {
-//            url = "http://" + host + ":" + port + "/";
-//        }
+        RestTemplate restTemplate = WorkProcess.getInstance().getRestTemplate();
+        String baseUrl = WorkProcess.getInstance().baseUrl;
 
         String userId = null;
         while (userId == null) {
             try {
-                userId = WorkProcess.getInstance().getRestTemplate().postForObject(WorkProcess.getInstance().baseUrl + "connect/", serviceName, String.class);
+                userId = restTemplate.postForObject(baseUrl + "connect/", serviceName, String.class);
                 Thread.sleep(10000L);
             } catch (Exception e) {
             }
         }
         WorkProcess.getInstance().setUserId(userId);
+        WorkProcess.getInstance().setAccumulator(AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody()));
+        List<Object> objectList = (List<Object>) restTemplate.exchange(baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody();
+        for (Object object : objectList){
+            WorkProcess.getInstance().panels.add(PanelVO.fromMap((Map) object));
+        }
+//        WorkProcess.getInstance().setPanels((List<Object>) restTemplate.exchange(baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody());
     }
 }

@@ -15,7 +15,7 @@ public class StationController {
     @CrossOrigin(origins = "*")
     @PostMapping(path="/")
     public @ResponseBody
-    String getUserId(@RequestBody String url) {
-        return userRepository.findIdBySID(url);
+    String getUserId(@RequestBody String sid) {
+        return userRepository.findIdBySID(sid);
     }
 }
