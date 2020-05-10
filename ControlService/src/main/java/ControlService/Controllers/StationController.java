@@ -12,7 +12,6 @@ public class StationController {
     @Autowired
     private UserRepository userRepository;
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path="/")
     public @ResponseBody
     String getUserId(@RequestBody String sid) {

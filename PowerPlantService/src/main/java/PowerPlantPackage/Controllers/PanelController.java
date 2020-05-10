@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/panels")
 @Component
 public class PanelController {
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
     Iterable<PanelVO> getAll() {
         return WorkProcess.getInstance().panels;
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
     PanelVO getById(@PathVariable String id) {

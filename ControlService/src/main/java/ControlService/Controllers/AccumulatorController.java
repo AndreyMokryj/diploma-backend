@@ -16,14 +16,12 @@ public class AccumulatorController {
     @Autowired
     private AccumulatorRepository accumulatorRepository;
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
     Iterable<AccumulatorE> getAll() {
         return accumulatorRepository.findAll();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
     AccumulatorE getById(@PathVariable String id) {
@@ -31,7 +29,6 @@ public class AccumulatorController {
         return accumulator.get();
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path="/{id}")
     public @ResponseBody
     void updateById(@PathVariable String id, @RequestBody AccumulatorVO accumulatorVO) {

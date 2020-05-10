@@ -18,14 +18,12 @@ public class StateController {
     @Autowired
     private StateRepository stateRepository;
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
     Iterable<StateE> getAll() {
         return stateRepository.findAll();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
     StateE getById(@PathVariable String id) {
@@ -50,14 +48,12 @@ public class StateController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/get/")
     public StateE getSt(@RequestBody StateVO stateVO) {
         StateE state = getState(stateVO);
         return state;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/update/")
     public void updatePrevState(@RequestBody PreviousVO previousVO) {
         StateE state = getById(previousVO.getId());
@@ -68,7 +64,6 @@ public class StateController {
         stateRepository.save(state);
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/change/")
     public void changeState(@RequestBody StateVO stateVO) {
         StateE state = getById(stateVO.getId());

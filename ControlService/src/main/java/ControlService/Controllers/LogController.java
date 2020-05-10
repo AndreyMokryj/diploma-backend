@@ -98,7 +98,6 @@ public class LogController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path="/update/")
     public @ResponseBody
     void updateLogs(@RequestBody LogVO logVO) {

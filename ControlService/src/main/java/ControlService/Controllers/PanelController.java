@@ -24,21 +24,18 @@ public class PanelController {
     @Autowired
     private StateRepository stateRepository;
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/")
     public @ResponseBody
     Iterable<PanelE> getAll() {
         return panelRepository.findAll();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/userId/{userId}")
     public @ResponseBody
     Iterable<PanelE> getByUserId(@PathVariable String userId) {
         return panelRepository.findByUserId(userId);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path="/{id}")
     public @ResponseBody
     PanelE getById(@PathVariable String id) {
@@ -46,7 +43,6 @@ public class PanelController {
         return panel.get();
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path="/{id}")
     public @ResponseBody
     void updateById(@PathVariable String id, @RequestBody PanelVO panelVO) {
@@ -54,7 +50,6 @@ public class PanelController {
         panelRepository.save(panel);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/reduce/{panelId}")
     public void reduceForPanel(@PathVariable String panelId) {
         int k = 10;
@@ -89,7 +84,6 @@ public class PanelController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/prepare/{panelId}")
     public void preparePanel(@PathVariable String panelId) {
         PanelE panel = getById(panelId);
