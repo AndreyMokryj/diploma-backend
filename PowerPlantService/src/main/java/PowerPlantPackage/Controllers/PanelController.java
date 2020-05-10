@@ -25,4 +25,19 @@ public class PanelController {
         }
         return null;
     }
+
+    @GetMapping(path="/turn-{action}/{id}")
+    public @ResponseBody
+    PanelVO turn(@PathVariable int action, @PathVariable String id) {
+        if(action != 0 && action != 1){
+            return null;
+        }
+        for (PanelVO panel : WorkProcess.getInstance().panels){
+            if (panel.getId().equals(id)){
+                panel.setConnected(action);
+                return panel;
+            }
+        }
+        return null;
+    }
 }
