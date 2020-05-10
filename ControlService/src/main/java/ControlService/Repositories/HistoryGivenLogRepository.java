@@ -1,6 +1,7 @@
 package ControlService.Repositories;
 
 import ControlService.Entities.HistoryGivenLogE;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,4 +12,13 @@ public interface HistoryGivenLogRepository extends CrudRepository<HistoryGivenLo
     @Query("SELECT hl FROM history_given_logs hl where hl.userId = :userId and hl.dateTime = :dateTime")
     @Transactional
     public Optional<HistoryGivenLogE> findByParams(String userId, String dateTime);
+
+    @Query("SELECT hl FROM history_given_logs hl where hl.userId = :userId")
+    @Transactional
+    public Iterable<HistoryGivenLogE> findByUserId(String userId);
+
+    @Query("DELETE FROM history_given_logs hl where hl.userId = :userId")
+    @Modifying
+    @Transactional
+    public void deleteByUserId(String userId);
 }

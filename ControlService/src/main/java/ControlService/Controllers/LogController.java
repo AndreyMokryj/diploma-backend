@@ -128,4 +128,13 @@ public class LogController {
             todayProducedLogRepository.save(todayLog);
         }
     }
+
+    @GetMapping(path="/clear/{userId}")
+    public @ResponseBody
+    void clearLogs(@PathVariable String userId) {
+        todayGivenLogRepository.deleteByUserId(userId);
+        todayProducedLogRepository.deleteByUserId(userId);
+        historyGivenLogRepository.deleteByUserId(userId);
+        historyProducedLogRepository.deleteByUserId(userId);
+    }
 }

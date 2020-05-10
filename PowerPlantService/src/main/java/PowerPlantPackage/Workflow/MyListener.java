@@ -36,5 +36,6 @@ public class MyListener implements ApplicationListener<ServletWebServerInitializ
         for (Object object : objectList){
             WorkProcess.getInstance().panels.add(PanelVO.fromMap((Map) object));
         }
+        restTemplate.exchange(baseUrl + "logs/clear/" + userId, HttpMethod.GET, null, void.class);
     }
 }

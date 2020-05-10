@@ -1,4 +1,4 @@
-package ControlService.Controllers;
+package ControlService.Controllers.ClientControllers;
 
 import ControlService.Entities.AccumulatorE;
 import ControlService.Repositories.AccumulatorRepository;

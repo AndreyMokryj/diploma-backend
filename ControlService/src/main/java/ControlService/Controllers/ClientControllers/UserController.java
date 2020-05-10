@@ -1,4 +1,4 @@
-package ControlService.Controllers;
+package ControlService.Controllers.ClientControllers;
 
 import ControlService.Entities.UserE;
 import ControlService.vo.UserVO;
