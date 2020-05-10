@@ -32,10 +32,21 @@ public class ClientController {
     @CrossOrigin(origins = "*")
     @GetMapping(path="/panels/userId/{userId}")
     public @ResponseBody
-    Iterable<Object> getByUserIdA(@PathVariable String userId) {
+    Iterable<Object> getPanelsByUserId(@PathVariable String userId) {
         String sid = userRepository.findSID(userId);
         List<Object> response = restTemplate.exchange("http://" + sid + "/panels/",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Object>>() {}).getBody();
+
+        return response;
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/panels/{id}/userId/{userId}")
+    public @ResponseBody
+    Object getPanelsById(@PathVariable String userId, @PathVariable String id) {
+        String sid = userRepository.findSID(userId);
+        Object response = restTemplate.exchange("http://" + sid + "/panels/" + id,
+                HttpMethod.GET, null, new ParameterizedTypeReference<Object>() {}).getBody();
 
         return response;
     }

@@ -15,12 +15,16 @@ public class PanelController {
     Iterable<PanelVO> getAll() {
         return WorkProcess.getInstance().panels;
     }
-//
-//    @CrossOrigin(origins = "*")
-//    @GetMapping(path="/{id}")
-//    public @ResponseBody
-//    PanelE getById(@PathVariable String id) {
-//        Optional<PanelE> panel = panelRepository.findById(id);
-//        return panel.get();
-//    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/{id}")
+    public @ResponseBody
+    PanelVO getById(@PathVariable String id) {
+        for (PanelVO panel : WorkProcess.getInstance().panels){
+            if (panel.getId().equals(id)){
+                return panel;
+            }
+        }
+        return null;
+    }
 }
