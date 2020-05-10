@@ -31,7 +31,7 @@ public class MyListener implements ApplicationListener<ServletWebServerInitializ
             }
         }
         WorkProcess.getInstance().setUserId(userId);
-        WorkProcess.getInstance().setAccumulator(AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody()));
+        WorkProcess.getInstance().accumulator = AccumulatorVO.fromMap(restTemplate.exchange(baseUrl + "accumulators/" + userId, HttpMethod.GET, null, Map.class).getBody());
         List<Object> objectList = (List<Object>) restTemplate.exchange(baseUrl + "panels/", HttpMethod.GET, null, Iterable.class).getBody();
         for (Object object : objectList){
             WorkProcess.getInstance().panels.add(PanelVO.fromMap((Map) object));

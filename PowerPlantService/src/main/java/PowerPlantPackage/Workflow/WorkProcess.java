@@ -31,7 +31,7 @@ public class WorkProcess {
     public List<PanelVO> panels;
     private RestTemplate restTemplate;
     private String userId;
-    private AccumulatorVO accumulator;
+    public AccumulatorVO accumulator;
 
     private int index;
 
@@ -281,13 +281,5 @@ public class WorkProcess {
 
     public RestTemplate getRestTemplate(){
         return restTemplate;
-    }
-
-    public AccumulatorVO getAccumulator(){
-        return accumulator;
-    }
-
-    public void setAccumulator(AccumulatorVO accumulator){
-        this.accumulator = accumulator;
     }
 }

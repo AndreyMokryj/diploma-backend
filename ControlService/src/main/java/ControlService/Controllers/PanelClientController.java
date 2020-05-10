@@ -16,10 +16,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/app")
+@RequestMapping(path="/app/panels")
 @Component
-public class ClientController {
-    //Requests from app
+public class PanelClientController {
     @Autowired
     RestTemplate restTemplate;
 
@@ -36,7 +35,7 @@ public class ClientController {
     private PanelRepository panelRepository;
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="/panels/userId/{userId}")
+    @GetMapping(path="/userId/{userId}")
     public @ResponseBody
     Iterable<Object> getPanelsByUserId(@PathVariable String userId) {
         String sid = userRepository.findSID(userId);
@@ -47,7 +46,7 @@ public class ClientController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="/panels/{id}/userId/{userId}")
+    @GetMapping(path="/{id}/userId/{userId}")
     public @ResponseBody
     Object getPanelById(@PathVariable String userId, @PathVariable String id) {
         String sid = userRepository.findSID(userId);
@@ -58,7 +57,7 @@ public class ClientController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="/panels/turn-{action}/{id}/userId/{userId}")
+    @GetMapping(path="/turn-{action}/{id}/userId/{userId}")
     public @ResponseBody
     boolean turnPanel(@PathVariable String userId, @PathVariable String id, @PathVariable int action) {
         if(action != 0 && action != 1){
