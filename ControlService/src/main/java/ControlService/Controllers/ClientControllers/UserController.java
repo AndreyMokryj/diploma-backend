@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path="/users")
+@RequestMapping(path="/app/users")
 @Component
 public class UserController {
     @Autowired
