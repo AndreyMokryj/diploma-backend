@@ -5,7 +5,7 @@ import SunPackage1.Coordinates.SunCoordinatesList;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-@RestController    // This means that this class is a Controller
+@RestController
 @RequestMapping(path="/sun")
 @Component
 public class SunController {
@@ -25,11 +25,9 @@ public class SunController {
             return -1;
         }
         double daz = Math.abs(coordinates.getAzimuth() - sunCoordinates.getAzimuth());
-        double dalt = Math.abs(coordinates.getAltitude() - sunCoordinates.getAltitude());
-        if (daz >= 90 || dalt >= 90){
-            return 0;
-        }
-        double coef = Math.cos(daz * Math.PI / 180.0) * Math.cos(dalt * Math.PI / 180.0);
+        double h1 = coordinates.getAltitude();
+        double h2 = sunCoordinates.getAltitude();
+        double coef = Math.cos(h1 * Math.PI / 180.0) * Math.cos(h2 * Math.PI / 180.0) * Math.cos(daz * Math.PI / 180.0) + Math.sin(h1 * Math.PI / 180.0) * Math.sin(h2 * Math.PI / 180.0);
         return coef;
     }
 
