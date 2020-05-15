@@ -74,4 +74,24 @@ public class PanelClientController {
         }
         return false;
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/power/{id}/userId/{userId}")
+    public @ResponseBody
+    double getPanelPower(@PathVariable String userId, @PathVariable String id) {
+        String sid = userRepository.findSID(userId);
+        double response = restTemplate.exchange("http://" + sid + "/panels/power/" + id,
+                HttpMethod.GET, null, new ParameterizedTypeReference<Double>() {}).getBody();
+        return response;
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/power/total/userId/{userId}")
+    public @ResponseBody
+    double getTotalPower(@PathVariable String userId) {
+        String sid = userRepository.findSID(userId);
+        double response = restTemplate.exchange("http://" + sid + "/panels/power/",
+                HttpMethod.GET, null, new ParameterizedTypeReference<Double>() {}).getBody();
+        return response;
+    }
 }
