@@ -11,8 +11,7 @@ public class HistoryProducedLogE {
     @Id
     private String id;
 
-    @Column(name = "date_time")
-    private String dateTime;
+    private String date;
 
     @Column(name = "user_id")
     private String userId;
@@ -29,7 +28,7 @@ public class HistoryProducedLogE {
         historyLog.setPanelId(logVO.getPanelId());
 
         String dateTime = logVO.getDateTime().substring(0, 10);
-        historyLog.setDateTime(dateTime);
+        historyLog.setDate(dateTime);
 
         return historyLog;
     }
@@ -58,19 +57,19 @@ public class HistoryProducedLogE {
         this.panelId = panelId;
     }
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public double getProduced() {
         return produced;
     }
 
     public void setProduced(double produced) {
         this.produced = produced;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

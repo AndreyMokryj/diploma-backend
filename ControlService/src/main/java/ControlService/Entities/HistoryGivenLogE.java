@@ -11,8 +11,7 @@ public class HistoryGivenLogE {
     @Id
     private String id;
 
-    @Column(name = "date_time")
-    private String dateTime;
+    private String date;
 
     @Column(name = "user_id")
     private String userId;
@@ -25,7 +24,7 @@ public class HistoryGivenLogE {
         historyLog.setUserId(logVO.getUserId());
 
         String dateTime = logVO.getDateTime().substring(0, 10);
-        historyLog.setDateTime(dateTime);
+        historyLog.setDate(dateTime);
 
         return historyLog;
     }
@@ -46,19 +45,19 @@ public class HistoryGivenLogE {
         this.userId = userId;
     }
 
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
-
     public double getGiven() {
         return given;
     }
 
     public void setGiven(double given) {
         this.given = given;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -38,7 +38,7 @@ public class LogController {
             Optional<HistoryProducedLogE> historyLog1 = historyProducedLogRepository.findByParams(
                     historyLog.getUserId(),
                     historyLog.getPanelId(),
-                    historyLog.getDateTime()
+                    historyLog.getDate()
             );
             return historyLog1.get();
         }
@@ -54,7 +54,7 @@ public class LogController {
         try {
             Optional<HistoryGivenLogE> historyLog1 = historyGivenLogRepository.findByParams(
                     historyLog.getUserId(),
-                    historyLog.getDateTime()
+                    historyLog.getDate()
             );
             return historyLog1.get();
         }
