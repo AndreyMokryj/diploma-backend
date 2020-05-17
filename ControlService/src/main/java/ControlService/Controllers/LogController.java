@@ -108,6 +108,7 @@ public class LogController {
 
             if(logVO.getDateTime().contains("00:00:00")){
                 todayGivenLogRepository.deleteByUserId(logVO.getUserId());
+                todayProducedLogRepository.deleteByUserId(logVO.getUserId());
             }
 
             TodayGivenLogE todayLog = getTodayGivenLog(logVO);
@@ -118,10 +119,6 @@ public class LogController {
             HistoryProducedLogE historyLog = getHistoryProducedLog(logVO);
             historyLog.setProduced(historyLog.getProduced() + logVO.getProduced());
             historyProducedLogRepository.save(historyLog);
-
-            if(logVO.getDateTime().contains("00:00:00")){
-                todayProducedLogRepository.deleteByPanelId(logVO.getPanelId());
-            }
 
             TodayProducedLogE todayLog = getTodayProducedLog(logVO);
             todayLog.setProduced(todayLog.getProduced() + logVO.getProduced());

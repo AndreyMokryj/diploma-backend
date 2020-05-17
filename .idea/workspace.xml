@@ -12,11 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="03c6e7cf-7908-4ff9-b123-8b29fe98f266" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Controllers/LogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Controllers/LogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Entities/HistoryGivenLogE.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Entities/HistoryGivenLogE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Entities/HistoryProducedLogE.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Entities/HistoryProducedLogE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Repositories/HistoryGivenLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Repositories/HistoryGivenLogRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Repositories/HistoryProducedLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ControlService/src/main/java/ControlService/Repositories/HistoryProducedLogRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +212,8 @@
       <workItem from="1589364091934" duration="277000" />
       <workItem from="1589419135654" duration="1055000" />
       <workItem from="1589469026340" duration="127000" />
-      <workItem from="1589545411191" duration="7483000" />
+      <workItem from="1589545411191" duration="12084000" />
+      <workItem from="1589723682358" duration="1250000" />
     </task>
     <servers />
   </component>
@@ -276,38 +272,38 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="430" y="337" key="GitRewordDialog/0.23.1440.826@0.23.1440.826" timestamp="1588267120833" />
-    <state width="1398" height="274" key="GridCell.Tab.0.bottom" timestamp="1589628454318">
+    <state width="1398" height="274" key="GridCell.Tab.0.bottom" timestamp="1589727841710">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1589628454318" />
-    <state width="1398" height="274" key="GridCell.Tab.0.center" timestamp="1589628454317">
+    <state width="1398" height="274" key="GridCell.Tab.0.bottom/0.23.1440.826@0.23.1440.826" timestamp="1589727841710" />
+    <state width="1398" height="274" key="GridCell.Tab.0.center" timestamp="1589727841709">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1589628454317" />
-    <state width="1398" height="274" key="GridCell.Tab.0.left" timestamp="1589628454317">
+    <state width="1398" height="274" key="GridCell.Tab.0.center/0.23.1440.826@0.23.1440.826" timestamp="1589727841709" />
+    <state width="1398" height="274" key="GridCell.Tab.0.left" timestamp="1589727841708">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1589628454317" />
-    <state width="1398" height="274" key="GridCell.Tab.0.right" timestamp="1589628454318">
+    <state width="1398" height="274" key="GridCell.Tab.0.left/0.23.1440.826@0.23.1440.826" timestamp="1589727841708" />
+    <state width="1398" height="274" key="GridCell.Tab.0.right" timestamp="1589727841709">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1589628454318" />
-    <state width="1398" height="274" key="GridCell.Tab.1.bottom" timestamp="1589628454319">
+    <state width="1398" height="274" key="GridCell.Tab.0.right/0.23.1440.826@0.23.1440.826" timestamp="1589727841709" />
+    <state width="1398" height="274" key="GridCell.Tab.1.bottom" timestamp="1589727841711">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1589628454319" />
-    <state width="1398" height="274" key="GridCell.Tab.1.center" timestamp="1589628454319">
+    <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.1440.826@0.23.1440.826" timestamp="1589727841711" />
+    <state width="1398" height="274" key="GridCell.Tab.1.center" timestamp="1589727841710">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1589628454319" />
-    <state width="1398" height="274" key="GridCell.Tab.1.left" timestamp="1589628454318">
+    <state width="1398" height="274" key="GridCell.Tab.1.center/0.23.1440.826@0.23.1440.826" timestamp="1589727841710" />
+    <state width="1398" height="274" key="GridCell.Tab.1.left" timestamp="1589727841710">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1589628454318" />
-    <state width="1398" height="274" key="GridCell.Tab.1.right" timestamp="1589628454319">
+    <state width="1398" height="274" key="GridCell.Tab.1.left/0.23.1440.826@0.23.1440.826" timestamp="1589727841710" />
+    <state width="1398" height="274" key="GridCell.Tab.1.right" timestamp="1589727841711">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1589628454319" />
+    <state width="1398" height="274" key="GridCell.Tab.1.right/0.23.1440.826@0.23.1440.826" timestamp="1589727841711" />
     <state width="1398" height="257" key="GridCell.Tab.2.bottom" timestamp="1589296471244">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -336,10 +332,10 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="185" y="32" key="SettingsEditor/0.23.1440.826@0.23.1440.826" timestamp="1586522957794" />
-    <state x="418" y="183" width="604" height="490" key="find.popup" timestamp="1589048886785">
+    <state x="418" y="183" width="604" height="490" key="find.popup" timestamp="1589728323502">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
-    <state x="418" y="183" width="604" height="490" key="find.popup/0.23.1440.826@0.23.1440.826" timestamp="1589048886785" />
+    <state x="418" y="183" width="604" height="490" key="find.popup/0.23.1440.826@0.23.1440.826" timestamp="1589728323502" />
     <state x="463" y="146" key="git4idea.branch.GitSmartOperationDialog" timestamp="1587752824974">
       <screen x="0" y="23" width="1440" height="826" />
     </state>
@@ -354,6 +350,15 @@
     <state x="385" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1440.826@0.23.1440.826" timestamp="1588620845562" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ControlService/src/main/java/ControlService/Controllers/LogController.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo typeName="org.apache.catalina.connector.Request" fieldName="remotePort" />
