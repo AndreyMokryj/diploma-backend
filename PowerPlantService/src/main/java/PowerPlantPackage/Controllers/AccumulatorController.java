@@ -5,7 +5,7 @@ import PowerPlantPackage.Workflow.WorkProcess;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-@RestController    // This means that this class is a Controller
+@RestController
 @RequestMapping(path="/accumulator")
 @Component
 public class AccumulatorController {

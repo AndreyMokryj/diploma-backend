@@ -274,6 +274,11 @@ public class WorkProcess {
         Void response = restTemplate.postForObject(baseUrl + "accumulators/" + userId, accumulatorVO, void.class);
     }
 
+    public String getDateTime() {
+        String dateTime = restTemplate.exchange(dateTimeUrl + index, HttpMethod.GET, null, String.class).getBody();
+        return dateTime;
+    }
+
     public String getUserId() {
         return userId;
     }
