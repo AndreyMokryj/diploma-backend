@@ -94,7 +94,7 @@ public class PanelController {
         stateVO.setAltitude(panel.getAltitude());
 
         StateE currentState = getState(stateVO);
-        currentState.setAzPlus(0.1);
+        currentState.setAzPlus(0.00001);
         currentState.setAzMinus(0);
         currentState.setAltPlus(0);
         currentState.setAltMinus(0);
